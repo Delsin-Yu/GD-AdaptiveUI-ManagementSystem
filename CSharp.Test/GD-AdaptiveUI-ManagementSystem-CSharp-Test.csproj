@@ -16,7 +16,7 @@
     </PropertyGroup>
 
 <ItemGroup>
-  <ProjectReference Include="..\..\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp.csproj" />
+  <ProjectReference Include="..\CSharp\GD-AdaptiveUI-ManagementSystem-CSharp.csproj" />
 </ItemGroup>
 
 

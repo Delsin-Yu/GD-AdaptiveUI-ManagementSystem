@@ -2,9 +2,9 @@
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem", "GD-AdaptiveUI-ManagementSystem.csproj", "{05929C79-22C6-46DC-B45F-667803C9F215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem-CSharp", "..\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp.csproj", "{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem-CSharp", "..\CSharp\GD-AdaptiveUI-ManagementSystem-CSharp.csproj", "{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem-CSharp-Test", "..\GD-AdaptiveUI-ManagementSystem-CSharp-Test\GD-AdaptiveUI-ManagementSystem-CSharp-Test.csproj", "{0D88F796-173F-41AA-A388-3BC21C4B12E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem-CSharp-Test", "..\CSharp.Test\GD-AdaptiveUI-ManagementSystem-CSharp-Test.csproj", "{0D88F796-173F-41AA-A388-3BC21C4B12E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
