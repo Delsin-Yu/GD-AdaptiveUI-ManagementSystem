@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvsbo5s1hvdyt"]
+
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_0_AdpUiLoader.cs" id="1_wpu4i"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/TestManager.cs" id="1_xvf8y"]
+[ext_resource type="AudioStream" uid="uid://d1dr8wthb5tgn" path="res://addons/deyu_adaptive_ui_management_system_test/assets/UI_Submit.ogg" id="3_frtad"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_1_PanelEvents.cs" id="4_c0s3m"]
+[ext_resource type="PackedScene" uid="uid://cwdggx24ec4re" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_1_PanelEvents.UiPanelTest.tscn" id="5_jt4ug"]
+
+[node name="TestManager" type="Control" node_paths=PackedStringArray("TestModules")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvf8y")
+TestModules = [NodePath("Test_0_AdpUiLoader"), NodePath("Test_1_PanelEvents")]
+
+[node name="Test_0_AdpUiLoader" type="Node" parent="."]
+script = ExtResource("1_wpu4i")
+TestAudio = ExtResource("3_frtad")
+
+[node name="Test_1_PanelEvents" type="Node" parent="."]
+script = ExtResource("4_c0s3m")
+TestPanel = ExtResource("5_jt4ug")

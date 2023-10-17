@@ -1,0 +1,24 @@
+<Project Sdk="Godot.NET.Sdk/4.1.2">
+
+<PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>GDAdaptiveUIManagementSystem.Test</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <PackageId>DEYU.GDUtilities.AdpUiManagementSystem.Test</PackageId>
+    <Version>0.0.1-alpha</Version>
+    <Authors>DE-YU</Authors>
+    <Product>GD Adaptive UI Management System Test</Product>
+    <Description>This package includes the test for the GD Adaptive UI Management System, a Godot framework which provides toolsets and managers to simplify the workload of programing games with large-scale, multi-layered UI and gamepad support.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\..\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp.csproj" />
+</ItemGroup>
+
+
+
+</Project>

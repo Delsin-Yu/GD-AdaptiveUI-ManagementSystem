@@ -1,0 +1,35 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem", "GD-AdaptiveUI-ManagementSystem.csproj", "{05929C79-22C6-46DC-B45F-667803C9F215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem-CSharp", "..\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp\GD-AdaptiveUI-ManagementSystem-CSharp.csproj", "{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GD-AdaptiveUI-ManagementSystem-CSharp-Test", "..\GD-AdaptiveUI-ManagementSystem-CSharp-Test\GD-AdaptiveUI-ManagementSystem-CSharp-Test\GD-AdaptiveUI-ManagementSystem-CSharp-Test.csproj", "{0D88F796-173F-41AA-A388-3BC21C4B12E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05929C79-22C6-46DC-B45F-667803C9F215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05929C79-22C6-46DC-B45F-667803C9F215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05929C79-22C6-46DC-B45F-667803C9F215}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{05929C79-22C6-46DC-B45F-667803C9F215}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{05929C79-22C6-46DC-B45F-667803C9F215}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{05929C79-22C6-46DC-B45F-667803C9F215}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{56E3C6F4-F7BB-4BA0-87F9-8B3FD77119A2}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{0D88F796-173F-41AA-A388-3BC21C4B12E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D88F796-173F-41AA-A388-3BC21C4B12E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D88F796-173F-41AA-A388-3BC21C4B12E3}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D88F796-173F-41AA-A388-3BC21C4B12E3}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0D88F796-173F-41AA-A388-3BC21C4B12E3}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D88F796-173F-41AA-A388-3BC21C4B12E3}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
