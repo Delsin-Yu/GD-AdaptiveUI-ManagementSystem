@@ -15,6 +15,8 @@ public static partial class AdpUiPanelManager
 
         public void HandlePanelCloseImpl(UiPanelBaseImpl closingPanel, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
         {
+            Log($"[ADP UI] Close Panel: {closingPanel.Name}");
+            
             ThrowIfPanelStackIsEmpty();
 
             RebuildPanelStackString(m_LastSucceedPanelStack);

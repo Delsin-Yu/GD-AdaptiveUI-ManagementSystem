@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bifw07lhn2g67"]
+
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/Test_2_AllPanels_UiPanelParamCloseTest.cs" id="1_07iwm"]
+
+[node name="Test_2_AllPanels_UiPanelParamCloseTest" type="Control" node_paths=PackedStringArray("ActiveOnlyVisualElements")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_07iwm")
+ActiveOnlyVisualElements = []
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.537255)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "Test_2_AllPanels_UiPanelParamCloseTest"
+horizontal_alignment = 1
+vertical_alignment = 1

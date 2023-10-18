@@ -31,7 +31,15 @@ public abstract partial class UiPanelBaseImpl : Control
     {
         if (notificationCode != NotificationPredelete) return;
 
-        if (!IsTempPanel && !ReleasingBufferedPanel) throw new InvalidOperationException($"一个非临时面板({Name})被意外删除！");
+        if (!IsTempPanel && !ReleasingBufferedPanel)
+            throw new InvalidOperationException(
+                $"""
+                 一个非临时面板({Name})被意外删除！
+                 =====Scene Path=====
+                 {GetPath()}
+                 =====Scene Path=====
+                 """
+            );
 
         OnPanelDestroyed();
     }
@@ -62,7 +70,15 @@ public abstract partial class UiPanelBaseImpl : Control
         PanelCloseTokenSource.Cancel();
         PanelCloseTokenSource = new();
         //Debug.LogError($"Closing Panel: {name}", PanelParent);
-        if (!IsPanelOpened) throw new InvalidOperationException($"禁止多次关闭已经被关闭的面板({Name})！");
+        if (!IsPanelOpened)
+            throw new InvalidOperationException(
+                $"""
+                 禁止多次关闭已经被关闭的面板({Name})！
+                 =====Scene Path=====
+                 {GetPath()}
+                 =====Scene Path=====
+                 """
+            );
         IsPanelOpened = false;
     }
 

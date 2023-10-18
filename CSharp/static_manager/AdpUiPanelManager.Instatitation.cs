@@ -59,7 +59,10 @@ public static partial class AdpUiPanelManager
         {
             var panelNode = panelParent.Instantiate();
 
-            var panelInstance = (T)panelNode;
+            if (panelNode is not T panelInstance)
+            {
+                throw new ArgumentException($"{nameof(panelInstance)}({panelNode.Name}) cannot convert to {typeof(T)}!", nameof(panelParent));
+            }
 
             GetCurrentPanelRoot().AddChild(panelInstance);
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwdggx24ec4re"]
 
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_1_PanelEvents_UiPanelTest.cs" id="1_3rjue"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents_UiPanelTest.cs" id="1_ph8qq"]
 
 [node name="Test_1_PanelEvents_UiPanelTest" type="Control" node_paths=PackedStringArray("ActiveOnlyVisualElements")]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3rjue")
+script = ExtResource("1_ph8qq")
 ActiveOnlyVisualElements = []
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -34,30 +34,3 @@ text = "Test_1_PanelEvents
 Close Panel With \"ui_cancel\""
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 146.0
-offset_top = 35.0
-offset_right = 446.0
-offset_bottom = 287.0
-theme_override_font_sizes/font_size = 51
-text = "Test Button"
-
-[node name="Button2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 433.0
-offset_right = 359.0
-offset_bottom = 685.0
-theme_override_font_sizes/font_size = 51
-text = "Test Button"
-
-[node name="Button3" type="Button" parent="."]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 779.0
-offset_right = 386.0
-offset_bottom = 1031.0
-theme_override_font_sizes/font_size = 51
-text = "Test Button"

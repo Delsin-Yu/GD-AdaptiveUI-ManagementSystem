@@ -12,28 +12,16 @@ public partial class TestManagerImpl : Node
 
     private async GDTask RunTestImplAsync()
     {
-        TestException testException = null;
-        
         AdpUiPanelManager.LogHandler = TestHelpers.Log;
         AdpUiPanelManager.LogWarningHandler = TestHelpers.LogWarning;
         AdpUiPanelManager.LogErrorHandler = TestHelpers.LogError;
-        
+
         foreach (var module in TestModules)
         {
-            if(module.Exclude) continue;
-            try
-            {
-                TestHelpers.Log($"Test Module: {module.Name}");
-                await module.RunTestAsync();
-            }
-            catch (Exception e)
-            {
-                testException = new(module, e);
-                break;
-            }
+            if (module.Exclude) continue;
+            TestHelpers.Log($"Test Module: {module.Name}");
+            await module.RunTestAsync();
         }
-
-        if (testException != null) throw testException;
 
         TestHelpers.Log("Test Finish");
     }

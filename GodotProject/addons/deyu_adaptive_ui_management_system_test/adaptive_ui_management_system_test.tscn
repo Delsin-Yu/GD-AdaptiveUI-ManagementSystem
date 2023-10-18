@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvsbo5s1hvdyt"]
+[gd_scene load_steps=15 format=3 uid="uid://dvsbo5s1hvdyt"]
 
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_0_AdpUiLoader.cs" id="1_wpu4i"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/TestManager.cs" id="1_xvf8y"]
-[ext_resource type="AudioStream" uid="uid://d1dr8wthb5tgn" path="res://addons/deyu_adaptive_ui_management_system_test/assets/UI_Submit.ogg" id="3_frtad"]
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_1_PanelEvents.cs" id="4_c0s3m"]
-[ext_resource type="PackedScene" uid="uid://cwdggx24ec4re" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/Test_1_PanelEvents.UiPanelTest.tscn" id="5_jt4ug"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/Test_0_AdpUiLoader.cs" id="2_asr5j"]
+[ext_resource type="AudioStream" uid="uid://d1dr8wthb5tgn" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/UI_Submit.ogg" id="3_d3yea"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents.cs" id="4_nxkp0"]
+[ext_resource type="PackedScene" uid="uid://cwdggx24ec4re" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents.UiPanelTest.tscn" id="5_3785w"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/Test_2_AllPanels.cs" id="6_ngss7"]
+[ext_resource type="PackedScene" uid="uid://c6dekemr5dvh0" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelExternTest.tscn" id="7_doceg"]
+[ext_resource type="PackedScene" uid="uid://bifw07lhn2g67" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelParamCloseTest.tscn" id="8_e3van"]
+[ext_resource type="PackedScene" uid="uid://ds8dmat88jqfa" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelParamExternOpenTest.tscn" id="9_j0hfd"]
+[ext_resource type="PackedScene" uid="uid://c8qa1dn5felbb" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelParamOpenTest.tscn" id="10_3phvt"]
+[ext_resource type="PackedScene" uid="uid://cc7vgqk8p80um" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelParamTest.tscn" id="11_sxnm4"]
+[ext_resource type="PackedScene" uid="uid://cc7vgqk8p80am" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelTest.tscn" id="12_y2xeo"]
+[ext_resource type="PackedScene" uid="uid://5oxw2nis82aj" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelExternTestAlt.tscn" id="13_gnyfa"]
+[ext_resource type="PackedScene" uid="uid://ciq8rggp4majb" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelParamExternOpenTestAlt.tscn" id="14_xy4nr"]
 
 [node name="TestManager" type="Control" node_paths=PackedStringArray("TestModules")]
 layout_mode = 3
@@ -14,12 +23,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xvf8y")
-TestModules = [NodePath("Test_0_AdpUiLoader"), NodePath("Test_1_PanelEvents")]
+TestModules = [NodePath("Test_0_AdpUiLoader"), NodePath("Test_1_PanelEvents"), NodePath("Test_2_AllPanels")]
 
 [node name="Test_0_AdpUiLoader" type="Node" parent="."]
-script = ExtResource("1_wpu4i")
-TestAudio = ExtResource("3_frtad")
+script = ExtResource("2_asr5j")
+TestAudio = ExtResource("3_d3yea")
 
 [node name="Test_1_PanelEvents" type="Node" parent="."]
-script = ExtResource("4_c0s3m")
-TestPanel = ExtResource("5_jt4ug")
+script = ExtResource("4_nxkp0")
+TestPanel = ExtResource("5_3785w")
+
+[node name="Test_2_AllPanels" type="Node" parent="."]
+script = ExtResource("6_ngss7")
+TestUiPanelExtern = ExtResource("7_doceg")
+TestUiPanelParamClose = ExtResource("8_e3van")
+TestUiPanelParamExternOpen = ExtResource("9_j0hfd")
+TestUiPanelParamOpen = ExtResource("10_3phvt")
+TestUiPanelParam = ExtResource("11_sxnm4")
+TestUiPanel = ExtResource("12_y2xeo")
+TestUiPanelExternAlt = ExtResource("13_gnyfa")
+TestUiPanelParamExternOpenAlt = ExtResource("14_xy4nr")

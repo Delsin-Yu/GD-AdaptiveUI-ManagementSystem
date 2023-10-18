@@ -112,7 +112,7 @@ public static partial class AdpUiPanelManager
             }
 
             TogglePanel(panelInstance, true);
-            
+
             // 在同层面板开启的情况下，生长当前面板栈
             if (panelOpenMode == PanelOpenMode.PreserveCurrentUi)
             {

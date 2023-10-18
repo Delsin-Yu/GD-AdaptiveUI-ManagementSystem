@@ -13,10 +13,8 @@ public partial class Test_0_AdpUiLoader_Impl : TestModule
         for (var i = 0; i < 5; i++)
         {
             TestHelpers.Run(() => AdpUiPanelManager.PlayAudio(TestAudio));
-            await GDTask.DelayFrame(5);
+            await GDTask.DelayFrame(1);
         }
-
-        await GDTask.Delay(TimeSpan.FromSeconds(1));
 
         TestHelpers.Run(() => AdpUiPanelManager.PlayAudio(null));
         TestHelpers.Run(AdpUiPanelManager.GetCancelActionName);
