@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Utils;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Utils;
 
 public partial class PointerButtonMarker : BaseButton
 {

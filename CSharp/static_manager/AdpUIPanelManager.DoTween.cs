@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public partial class AdpUiPanelManager
+public partial class AdpUIPanelManager
 {
     internal static void DoTween(Node key, float targetAlpha, double duration, Action onFinish, ReadOnlySpan<Control> controls) =>
         Impl.DoTweenImpl(key, targetAlpha, duration, onFinish, controls);
 
-    private partial class AdpUiPanelManagerImpl
+    private partial class AdpUIPanelManagerImpl
     {
         private readonly Dictionary<Node, Tween> m_ActiveTweenInfo = new();
         private readonly NodePath m_CanvasItemModulateNodePath = new(CanvasItem.PropertyName.Modulate);

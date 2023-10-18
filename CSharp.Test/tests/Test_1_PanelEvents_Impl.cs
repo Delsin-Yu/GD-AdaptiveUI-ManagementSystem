@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DEYU.GDUtilities.AdpUiManagementSystem.Panels;
+using DEYU.GDUtilities.AdpUIManagementSystem.Panels;
 using Fractural.Tasks;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public partial class Test_1_PanelEvents_Impl : TestModule
 {
@@ -19,7 +19,7 @@ public partial class Test_1_PanelEvents_Impl : TestModule
     
     private async Task TestTemp()
     {
-        var tempPanel = TestHelpers.Run(() => TestPanel.InstantiateTempPanel<UiPanel>());
+        var tempPanel = TestHelpers.Run(() => TestPanel.InstantiateTempPanel<UIPanel>());
 
         TestHelpers.Run(
             () =>
@@ -30,7 +30,7 @@ public partial class Test_1_PanelEvents_Impl : TestModule
         );
         await GDTask.WaitUntilCanceled(tempPanel.OnPanelCloseToken);
 
-        tempPanel = TestHelpers.Run(() => TestPanel.InstantiateTempPanel<UiPanel>());
+        tempPanel = TestHelpers.Run(() => TestPanel.InstantiateTempPanel<UIPanel>());
 
         TestHelpers.Run(
             () =>
@@ -44,7 +44,7 @@ public partial class Test_1_PanelEvents_Impl : TestModule
 
     private async Task TestPrepare()
     {
-        var prepareBufferedPanel = TestHelpers.Run(() => TestPanel.PrepareBufferedPanel<UiPanel>());
+        var prepareBufferedPanel = TestHelpers.Run(() => TestPanel.PrepareBufferedPanel<UIPanel>());
 
         TestHelpers.Run(
             () =>
@@ -64,6 +64,6 @@ public partial class Test_1_PanelEvents_Impl : TestModule
         );
         await GDTask.WaitUntilCanceled(prepareBufferedPanel.OnPanelCloseToken);
 
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestPanel));
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestPanel));
     }
 }

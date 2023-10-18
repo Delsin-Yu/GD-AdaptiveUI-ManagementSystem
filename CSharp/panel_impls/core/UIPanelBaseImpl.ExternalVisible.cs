@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Core;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-public abstract partial class UiPanelBaseImpl
+public abstract partial class UIPanelBaseImpl
 {
 #region Panel Activities
 
@@ -12,7 +12,7 @@ public abstract partial class UiPanelBaseImpl
     public CancellationToken OnPanelCloseFadeFinishToken => PanelCloseFadeFinishTokenSource?.Token ?? CancellationToken.None;
     public CancellationToken OnPanelCloseToken => PanelCloseTokenSource?.Token ?? CancellationToken.None;
 
-    public virtual uint RequestedInputScheme => AdpUiInputScheme.UiInputScheme;
+    public virtual uint RequestedInputScheme => AdpUIInputScheme.UIInputScheme;
     protected virtual void OnPanelInitialize() { }
     protected abstract void OnPanelOpen();
     protected virtual void OnPanelClose() { }
@@ -37,7 +37,7 @@ public abstract partial class UiPanelBaseImpl
 
     public virtual bool MutePanelOpenAudio => false;
     public virtual bool MutePanelCloseAudio => false;
-    public virtual float GetPanelTransitionDuration() => AdpUiPanelManager.PanelTransitionDuration;
+    public virtual float GetPanelTransitionDuration() => AdpUIPanelManager.PanelTransitionDuration;
 
 #endregion
 
@@ -64,7 +64,7 @@ public abstract partial class UiPanelBaseImpl
         else
         {
             m_RegisteredPanelWiseCancel = callback;
-            RegisterPanelWiseInput(AdpUiPanelManager.GetCancelActionName(), OnCancelPressed);
+            RegisterPanelWiseInput(AdpUIPanelManager.GetCancelActionName(), OnCancelPressed);
         }
     }
 
@@ -81,7 +81,7 @@ public abstract partial class UiPanelBaseImpl
     {
         m_RegisteredPanelWiseCancel -= callback;
         if (m_RegisteredPanelWiseCancel != null) return;
-        RemovePanelWiseInput(AdpUiPanelManager.GetCancelActionName(), OnCancelPressed);
+        RemovePanelWiseInput(AdpUIPanelManager.GetCancelActionName(), OnCancelPressed);
     }
 
     protected void SetupPanelWiseInput(bool doReg, string inputName, Action<InputEvent> callback)

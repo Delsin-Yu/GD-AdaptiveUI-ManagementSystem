@@ -1,9 +1,9 @@
-using DEYU.GDUtilities.AdpUiManagementSystem.Utils;
+using DEYU.GDUtilities.AdpUIManagementSystem.Utils;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static partial class AdpUiPanelManager
+public static partial class AdpUIPanelManager
 {
     private static readonly Godot.Collections.Array s_OneVariableArray = new(new Variant[1]);
 

@@ -1,11 +1,11 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using DEYU.GDUtilities.AdpUiManagementSystem.Core;
+using DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static partial class AdpUiPanelManager
+public static partial class AdpUIPanelManager
 {
     public static float PanelTransitionDuration { get => Impl.PanelTransitionDurationImpl; set => Impl.PanelTransitionDurationImpl = value; }
 
@@ -17,16 +17,16 @@ public static partial class AdpUiPanelManager
     internal static void LogWarning(string message) => Impl.LogWarning(message);
     internal static void LogError(string message) => Impl.LogError(message);
     
-    private partial class AdpUiPanelManagerImpl
+    private partial class AdpUIPanelManagerImpl
     {
         public Action<string> LogHandlerImpl { private get; set; } = GD.Print;
         public Action<string> LogWarningHandlerImpl { private get; set; } = GD.PushWarning;
         public Action<string> LogErrorHandlerImpl { private get; set; } = GD.PrintErr;
 
-        public _AdpUiAudioInterfaceImpl AudioInterfaceImpl { get; }
-        public _AdpUiInputInterceptorImpl InputInterceptorImpl { get; }
+        public _AdpUIAudioInterfaceImpl AudioInterfaceImpl { get; }
+        public _AdpUIInputInterceptorImpl InputInterceptorImpl { get; }
 
-        public AdpUiPanelManagerImpl(_AdpUiAudioInterfaceImpl audioInterfaceImpl, _AdpUiInputInterceptorImpl inputInterceptorImpl)
+        public AdpUIPanelManagerImpl(_AdpUIAudioInterfaceImpl audioInterfaceImpl, _AdpUIInputInterceptorImpl inputInterceptorImpl)
         {
             AudioInterfaceImpl = audioInterfaceImpl;
             InputInterceptorImpl = inputInterceptorImpl;
@@ -39,7 +39,7 @@ public static partial class AdpUiPanelManager
         public void LogWarning(string message) => LogWarningHandlerImpl?.Invoke(message);
         public void LogError(string message) => LogErrorHandlerImpl?.Invoke(message);
         
-        private readonly Stack<Stack<UiPanelBaseImpl>> m_PanelStack = new();
+        private readonly Stack<Stack<UIPanelBaseImpl>> m_PanelStack = new();
         public float PanelTransitionDurationImpl { get; set; } = 0.1f;
     }
 }

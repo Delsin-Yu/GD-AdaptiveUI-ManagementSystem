@@ -1,20 +1,20 @@
 ﻿using Fractural.Tasks;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public partial class Test_2_AllPanels_Impl : TestModule
 {
-    [Export] private PackedScene TestUiPanelExtern { get; set; }
-    [Export] private PackedScene TestUiPanelParamClose { get; set; }
-    [Export] private PackedScene TestUiPanelParamExternOpen { get; set; }
-    [Export] private PackedScene TestUiPanelParamOpen { get; set; }
-    [Export] private PackedScene TestUiPanelParam { get; set; }
-    [Export] private PackedScene TestUiPanel { get; set; }  
+    [Export] private PackedScene TestUIPanelExtern { get; set; }
+    [Export] private PackedScene TestUIPanelParamClose { get; set; }
+    [Export] private PackedScene TestUIPanelParamExternOpen { get; set; }
+    [Export] private PackedScene TestUIPanelParamOpen { get; set; }
+    [Export] private PackedScene TestUIPanelParam { get; set; }
+    [Export] private PackedScene TestUIPanel { get; set; }  
     
     
-    [Export] private PackedScene TestUiPanelExternAlt { get; set; }
-    [Export] private PackedScene TestUiPanelParamExternOpenAlt { get; set; }
+    [Export] private PackedScene TestUIPanelExternAlt { get; set; }
+    [Export] private PackedScene TestUIPanelParamExternOpenAlt { get; set; }
 
     public override async GDTask RunTestAsync()
     {
@@ -33,59 +33,59 @@ public partial class Test_2_AllPanels_Impl : TestModule
 
     private void TestExternPanelTemp()
     {
-        var testUiPanelExternTestImpl = TestHelpers.Run(() => TestUiPanelExternAlt.InstantiateTempPanel<UiPanelExternTestAltImpl>());
-        TestHelpers.Run(() => testUiPanelExternTestImpl.OpenPanelStack());
-        TestHelpers.Run(() => testUiPanelExternTestImpl.CloseExternPanel());
+        var testUIPanelExternTestImpl = TestHelpers.Run(() => TestUIPanelExternAlt.InstantiateTempPanel<UIPanelExternTestAltImpl>());
+        TestHelpers.Run(() => testUIPanelExternTestImpl.OpenPanelStack());
+        TestHelpers.Run(() => testUIPanelExternTestImpl.CloseExternPanel());
 
-        var testUiPanelParamExternOpenTestImpl = TestHelpers.Run(() => TestUiPanelParamExternOpenAlt.InstantiateTempPanel<UiPanelParamExternOpenTestAltImpl>());
-        TestHelpers.Run(() => testUiPanelParamExternOpenTestImpl.OpenPanelStack("TestUiPanelParamExternOpenAlt::OpenPanelStack"));
-        TestHelpers.Run(() => testUiPanelParamExternOpenTestImpl.CloseExternPanel());
+        var testUIPanelParamExternOpenTestImpl = TestHelpers.Run(() => TestUIPanelParamExternOpenAlt.InstantiateTempPanel<UIPanelParamExternOpenTestAltImpl>());
+        TestHelpers.Run(() => testUIPanelParamExternOpenTestImpl.OpenPanelStack("TestUIPanelParamExternOpenAlt::OpenPanelStack"));
+        TestHelpers.Run(() => testUIPanelParamExternOpenTestImpl.CloseExternPanel());
     }
     
     private void TestExternPanelBuffered()
     {
-        var testUiPanelExternTestImpl = TestHelpers.Run(() => TestUiPanelExternAlt.PrepareBufferedPanel<UiPanelExternTestAltImpl>());
-        TestHelpers.Run(() => testUiPanelExternTestImpl.OpenPanelStack());
-        TestHelpers.Run(() => testUiPanelExternTestImpl.CloseExternPanel());
-        TestHelpers.Run(() => testUiPanelExternTestImpl.OpenPanelStack());
-        TestHelpers.Run(() => testUiPanelExternTestImpl.CloseExternPanel());
+        var testUIPanelExternTestImpl = TestHelpers.Run(() => TestUIPanelExternAlt.PrepareBufferedPanel<UIPanelExternTestAltImpl>());
+        TestHelpers.Run(() => testUIPanelExternTestImpl.OpenPanelStack());
+        TestHelpers.Run(() => testUIPanelExternTestImpl.CloseExternPanel());
+        TestHelpers.Run(() => testUIPanelExternTestImpl.OpenPanelStack());
+        TestHelpers.Run(() => testUIPanelExternTestImpl.CloseExternPanel());
         
-        var testUiPanelParamExternOpenTestImpl = TestHelpers.Run(() => TestUiPanelParamExternOpenAlt.PrepareBufferedPanel<UiPanelParamExternOpenTestAltImpl>());
-        TestHelpers.Run(() => testUiPanelParamExternOpenTestImpl.OpenPanelStack("TestUiPanelParamExternOpenAlt::OpenPanelStack"));
-        TestHelpers.Run(() => testUiPanelParamExternOpenTestImpl.CloseExternPanel());
-        TestHelpers.Run(() => testUiPanelParamExternOpenTestImpl.OpenPanelStack("TestUiPanelParamExternOpenAlt::OpenPanelStack"));
-        TestHelpers.Run(() => testUiPanelParamExternOpenTestImpl.CloseExternPanel());
+        var testUIPanelParamExternOpenTestImpl = TestHelpers.Run(() => TestUIPanelParamExternOpenAlt.PrepareBufferedPanel<UIPanelParamExternOpenTestAltImpl>());
+        TestHelpers.Run(() => testUIPanelParamExternOpenTestImpl.OpenPanelStack("TestUIPanelParamExternOpenAlt::OpenPanelStack"));
+        TestHelpers.Run(() => testUIPanelParamExternOpenTestImpl.CloseExternPanel());
+        TestHelpers.Run(() => testUIPanelParamExternOpenTestImpl.OpenPanelStack("TestUIPanelParamExternOpenAlt::OpenPanelStack"));
+        TestHelpers.Run(() => testUIPanelParamExternOpenTestImpl.CloseExternPanel());
     }
 
     private async GDTask TestAllPanelBuffered()
     {
-        await TestHelpers.RunAsync(() => TestUiPanel.PrepareBufferedPanel<UiPanelTestImpl>().OpenPanelStackAsync());
-        await TestHelpers.RunAsync(() => TestUiPanel.PrepareBufferedPanel<UiPanelTestImpl>().OpenPanelStackAsync());
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestUiPanel));
-        await TestHelpers.RunAsync(() => TestUiPanelExtern.PrepareBufferedPanel<UiPanelExternTestImpl>().OpenPanelStackAsync());
-        await TestHelpers.RunAsync(() => TestUiPanelExtern.PrepareBufferedPanel<UiPanelExternTestImpl>().OpenPanelStackAsync());
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestUiPanelExtern));
-        await TestHelpers.RunAsync(() => TestUiPanelParam.PrepareBufferedPanel<UiPanelParamTestImpl>().OpenPanelStackAsync("TestUiPanelParam::OpenPanelStack"));
-        await TestHelpers.RunAsync(() => TestUiPanelParam.PrepareBufferedPanel<UiPanelParamTestImpl>().OpenPanelStackAsync("TestUiPanelParam::OpenPanelStack"));
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestUiPanelParam));
-        await TestHelpers.RunAsync(() => TestUiPanelParamOpen.PrepareBufferedPanel<UiPanelParamOpenTestImpl>().OpenPanelStackAsync("TestUiPanelParamOpen::OpenPanelStack"));
-        await TestHelpers.RunAsync(() => TestUiPanelParamOpen.PrepareBufferedPanel<UiPanelParamOpenTestImpl>().OpenPanelStackAsync("TestUiPanelParamOpen::OpenPanelStack"));
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestUiPanelParamOpen));
-        await TestHelpers.RunAsync(() => TestUiPanelParamClose.PrepareBufferedPanel<UiPanelParamCloseTestImpl>().OpenPanelStackAsync());
-        await TestHelpers.RunAsync(() => TestUiPanelParamClose.PrepareBufferedPanel<UiPanelParamCloseTestImpl>().OpenPanelStackAsync());
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestUiPanelParamClose));
-        await TestHelpers.RunAsync(() => TestUiPanelParamExternOpen.PrepareBufferedPanel<UiPanelParamExternOpenTestImpl>().OpenPanelStackAsync("TestUiPanelParamExternOpen::OpenPanelStack"));
-        await TestHelpers.RunAsync(() => TestUiPanelParamExternOpen.PrepareBufferedPanel<UiPanelParamExternOpenTestImpl>().OpenPanelStackAsync("TestUiPanelParamExternOpen::OpenPanelStack"));
-        TestHelpers.Run(() => AdpUiPanelManager.TryDeleteBufferedPanel(TestUiPanelParamExternOpen));
+        await TestHelpers.RunAsync(() => TestUIPanel.PrepareBufferedPanel<UIPanelTestImpl>().OpenPanelStackAsync());
+        await TestHelpers.RunAsync(() => TestUIPanel.PrepareBufferedPanel<UIPanelTestImpl>().OpenPanelStackAsync());
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestUIPanel));
+        await TestHelpers.RunAsync(() => TestUIPanelExtern.PrepareBufferedPanel<UIPanelExternTestImpl>().OpenPanelStackAsync());
+        await TestHelpers.RunAsync(() => TestUIPanelExtern.PrepareBufferedPanel<UIPanelExternTestImpl>().OpenPanelStackAsync());
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestUIPanelExtern));
+        await TestHelpers.RunAsync(() => TestUIPanelParam.PrepareBufferedPanel<UIPanelParamTestImpl>().OpenPanelStackAsync("TestUIPanelParam::OpenPanelStack"));
+        await TestHelpers.RunAsync(() => TestUIPanelParam.PrepareBufferedPanel<UIPanelParamTestImpl>().OpenPanelStackAsync("TestUIPanelParam::OpenPanelStack"));
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestUIPanelParam));
+        await TestHelpers.RunAsync(() => TestUIPanelParamOpen.PrepareBufferedPanel<UIPanelParamOpenTestImpl>().OpenPanelStackAsync("TestUIPanelParamOpen::OpenPanelStack"));
+        await TestHelpers.RunAsync(() => TestUIPanelParamOpen.PrepareBufferedPanel<UIPanelParamOpenTestImpl>().OpenPanelStackAsync("TestUIPanelParamOpen::OpenPanelStack"));
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestUIPanelParamOpen));
+        await TestHelpers.RunAsync(() => TestUIPanelParamClose.PrepareBufferedPanel<UIPanelParamCloseTestImpl>().OpenPanelStackAsync());
+        await TestHelpers.RunAsync(() => TestUIPanelParamClose.PrepareBufferedPanel<UIPanelParamCloseTestImpl>().OpenPanelStackAsync());
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestUIPanelParamClose));
+        await TestHelpers.RunAsync(() => TestUIPanelParamExternOpen.PrepareBufferedPanel<UIPanelParamExternOpenTestImpl>().OpenPanelStackAsync("TestUIPanelParamExternOpen::OpenPanelStack"));
+        await TestHelpers.RunAsync(() => TestUIPanelParamExternOpen.PrepareBufferedPanel<UIPanelParamExternOpenTestImpl>().OpenPanelStackAsync("TestUIPanelParamExternOpen::OpenPanelStack"));
+        TestHelpers.Run(() => AdpUIPanelManager.TryDeleteBufferedPanel(TestUIPanelParamExternOpen));
     }
 
     private async GDTask TestAllPanelTemp()
     {
-        await TestHelpers.RunAsync(() => TestUiPanel.InstantiateTempPanel<UiPanelTestImpl>().OpenPanelStackAsync());
-        await TestHelpers.RunAsync(() => TestUiPanelExtern.InstantiateTempPanel<UiPanelExternTestImpl>().OpenPanelStackAsync());
-        await TestHelpers.RunAsync(() => TestUiPanelParam.InstantiateTempPanel<UiPanelParamTestImpl>().OpenPanelStackAsync("TestUiPanelParam::OpenPanelStack"));
-        await TestHelpers.RunAsync(() => TestUiPanelParamOpen.InstantiateTempPanel<UiPanelParamOpenTestImpl>().OpenPanelStackAsync("TestUiPanelParamOpen::OpenPanelStack"));
-        await TestHelpers.RunAsync(() => TestUiPanelParamClose.InstantiateTempPanel<UiPanelParamCloseTestImpl>().OpenPanelStackAsync());
-        await TestHelpers.RunAsync(() => TestUiPanelParamExternOpen.InstantiateTempPanel<UiPanelParamExternOpenTestImpl>().OpenPanelStackAsync("TestUiPanelParamExternOpen::OpenPanelStack"));
+        await TestHelpers.RunAsync(() => TestUIPanel.InstantiateTempPanel<UIPanelTestImpl>().OpenPanelStackAsync());
+        await TestHelpers.RunAsync(() => TestUIPanelExtern.InstantiateTempPanel<UIPanelExternTestImpl>().OpenPanelStackAsync());
+        await TestHelpers.RunAsync(() => TestUIPanelParam.InstantiateTempPanel<UIPanelParamTestImpl>().OpenPanelStackAsync("TestUIPanelParam::OpenPanelStack"));
+        await TestHelpers.RunAsync(() => TestUIPanelParamOpen.InstantiateTempPanel<UIPanelParamOpenTestImpl>().OpenPanelStackAsync("TestUIPanelParamOpen::OpenPanelStack"));
+        await TestHelpers.RunAsync(() => TestUIPanelParamClose.InstantiateTempPanel<UIPanelParamCloseTestImpl>().OpenPanelStackAsync());
+        await TestHelpers.RunAsync(() => TestUIPanelParamExternOpen.InstantiateTempPanel<UIPanelParamExternOpenTestImpl>().OpenPanelStackAsync("TestUIPanelParamExternOpen::OpenPanelStack"));
     }
 }

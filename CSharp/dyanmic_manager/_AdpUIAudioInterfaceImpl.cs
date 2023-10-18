@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public partial class _AdpUiAudioInterfaceImpl : Node
+public partial class _AdpUIAudioInterfaceImpl : Node
 {
     private readonly Queue<AudioStreamPlayer> m_AvailableAudioStreamPlayers = new();
     private readonly List<AudioStreamPlayer> m_OccupiedAudioStreamPlayers = new();

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DEYU.GDUtilities.AdpUiManagementSystem.Core;
+using DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
 internal class EmptyPanelStackException : Exception
 {
@@ -18,18 +18,18 @@ internal class EmptyPanelStackException : Exception
 internal class IncorrectPanelClosingOrderException : Exception
 {
     public StringBuilder LastPanelStack { get; }
-    public Stack<Stack<UiPanelBaseImpl>> CurrentPanelStack { get; }
+    public Stack<Stack<UIPanelBaseImpl>> CurrentPanelStack { get; }
 
-    public UiPanelBaseImpl ClosingPanel { get; }
-    public UiPanelBaseImpl TopPanel { get; }
+    public UIPanelBaseImpl ClosingPanel { get; }
+    public UIPanelBaseImpl TopPanel { get; }
 
 
     public IncorrectPanelClosingOrderException
         (
             StringBuilder lastPanelStack,
-            Stack<Stack<UiPanelBaseImpl>> currentPanelStack,
-            UiPanelBaseImpl closingPanel,
-            UiPanelBaseImpl topPanel
+            Stack<Stack<UIPanelBaseImpl>> currentPanelStack,
+            UIPanelBaseImpl closingPanel,
+            UIPanelBaseImpl topPanel
         ) : base(
         $"""
          Unable to close the current panel ({closingPanel.Name})

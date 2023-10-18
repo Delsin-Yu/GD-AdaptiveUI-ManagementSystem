@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2bnkbw0ooj0d"]
 
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/AdpUiLoader.cs" id="1_lst4a"]
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/AdpUiAudioInterface.cs" id="2_wldu0"]
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/AdpUiInputInterceptor.cs" id="3_uu1ht"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/AdpUILoader.cs" id="1_lst4a"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/AdpUIAudioInterface.cs" id="2_wldu0"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/AdpUIInputInterceptor.cs" id="3_uu1ht"]
 
-[node name="AdaptiveUiManagementSystem" type="Node" node_paths=PackedStringArray("AudioInterfaceImpl", "InputInterceptorImpl", "DefaultPanelRoot")]
+[node name="AdaptiveUIManagementSystem" type="Node" node_paths=PackedStringArray("AudioInterfaceImpl", "InputInterceptorImpl", "DefaultPanelRoot")]
 script = ExtResource("1_lst4a")
 AudioInterfaceImpl = NodePath("AudioInterface")
 InputInterceptorImpl = NodePath("InputInterceptor")

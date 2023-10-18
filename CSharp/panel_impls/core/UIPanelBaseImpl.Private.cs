@@ -1,9 +1,9 @@
 ﻿using System;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Core;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-public partial class UiPanelBaseImpl
+public partial class UIPanelBaseImpl
 {
     internal bool IsTempPanel { get; private set; }
 
@@ -40,7 +40,7 @@ public partial class UiPanelBaseImpl
 
     internal void OpenPanel
         (
-            Action<UiPanelBaseImpl> onPanelCloseCallback,
+            Action<UIPanelBaseImpl> onPanelCloseCallback,
             PanelOpenMode currentPanelOpenMode,
             PanelVisualMode lastPanelVisualMode
         )
@@ -57,8 +57,8 @@ public partial class UiPanelBaseImpl
 
         if (!MutePanelOpenAudio)
         {
-            if (OverrideOnPanelOpenAudio != null) AdpUiPanelManager.PlayAudio(OverrideOnPanelOpenAudio);
-            else AdpUiPanelManager.PlayDefaultPanelOpenAudio();
+            if (OverrideOnPanelOpenAudio != null) AdpUIPanelManager.PlayAudio(OverrideOnPanelOpenAudio);
+            else AdpUIPanelManager.PlayDefaultPanelOpenAudio();
         }
 
         OnPanelOpen();
@@ -80,11 +80,11 @@ public partial class UiPanelBaseImpl
                 HidePanel();
             }
 
-            AdpUiPanelManager.SetNodeChildAvailability(this, false);
+            AdpUIPanelManager.SetNodeChildAvailability(this, false);
         }
         else
         {
-            AdpUiPanelManager.SetNodeChildAvailability(this, true);
+            AdpUIPanelManager.SetNodeChildAvailability(this, true);
             if (panelVisualMode == PanelVisualMode.HideVisual)
                 if (!m_IsHiddenAtStart)
                     ShowPanel();

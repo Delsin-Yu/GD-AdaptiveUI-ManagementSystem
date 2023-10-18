@@ -4,7 +4,7 @@ using System.Text;
 using Fractural.Tasks;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public static class TestHelpers
 {

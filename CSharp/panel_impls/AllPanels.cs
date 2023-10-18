@@ -1,9 +1,9 @@
 ﻿using System;
-using DEYU.GDUtilities.AdpUiManagementSystem.Core;
+using DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Panels;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Panels;
 
-public abstract partial class UiPanel : UiPanelBaseImpl
+public abstract partial class UIPanel : UIPanelBaseImpl
 {
     protected void ClosePanel() => ClosePanelInternal();
     protected void ClosePanelSilent() => ClosePanelSilentInternal();
@@ -12,7 +12,7 @@ public abstract partial class UiPanel : UiPanelBaseImpl
     protected void EnableCloseWithCancelKey() => RegisterPanelWiseCancel(ClosePanel);
 }
 
-public abstract partial class UiPanelExtern : UiPanel
+public abstract partial class UIPanelExtern : UIPanel
 {
     protected virtual void OnExitExtern() { }
 
@@ -29,7 +29,7 @@ public abstract partial class UiPanelExtern : UiPanel
     }
 }
 
-public abstract partial class UiPanelParam<TOpenParam, TCloseParam> : UiPanelBaseImpl
+public abstract partial class UIPanelParam<TOpenParam, TCloseParam> : UIPanelBaseImpl
 {
     protected TOpenParam OpenParam { get; private set; }
     private TCloseParam CloseParam { get; set; }
@@ -45,7 +45,7 @@ public abstract partial class UiPanelParam<TOpenParam, TCloseParam> : UiPanelBas
     internal void OpenPanel
         (
             TOpenParam openParam,
-            Action<UiPanelBaseImpl, TCloseParam> onPanelCloseCallback,
+            Action<UIPanelBaseImpl, TCloseParam> onPanelCloseCallback,
             PanelOpenMode currentPanelOpenMode,
             PanelVisualMode lastPanelVisualMode
         )
@@ -71,7 +71,7 @@ public abstract partial class UiPanelParam<TOpenParam, TCloseParam> : UiPanelBas
     }
 }
 
-public abstract partial class UiPanelParamOpen<TOpenParam> : UiPanelBaseImpl
+public abstract partial class UIPanelParamOpen<TOpenParam> : UIPanelBaseImpl
 {
     protected TOpenParam OpenParam { get; private set; }
 
@@ -82,7 +82,7 @@ public abstract partial class UiPanelParamOpen<TOpenParam> : UiPanelBaseImpl
     internal void OpenPanel
         (
             TOpenParam openParam,
-            Action<UiPanelBaseImpl> onPanelCloseCallback,
+            Action<UIPanelBaseImpl> onPanelCloseCallback,
             PanelOpenMode currentPanelOpenMode,
             PanelVisualMode lastPanelVisualMode
         )
@@ -104,7 +104,7 @@ public abstract partial class UiPanelParamOpen<TOpenParam> : UiPanelBaseImpl
     protected void EnableCloseWithCancelKey() => RegisterPanelWiseCancel(ClosePanelInternal);
 }
 
-public abstract partial class UiPanelParamClose<TCloseParam> : UiPanelBaseImpl
+public abstract partial class UIPanelParamClose<TCloseParam> : UIPanelBaseImpl
 {
     private TCloseParam CloseParam { get; set; }
 
@@ -114,7 +114,7 @@ public abstract partial class UiPanelParamClose<TCloseParam> : UiPanelBaseImpl
 
     internal void OpenPanel
         (
-            Action<UiPanelBaseImpl, TCloseParam> onPanelCloseCallback,
+            Action<UIPanelBaseImpl, TCloseParam> onPanelCloseCallback,
             PanelOpenMode currentPanelOpenMode,
             PanelVisualMode lastPanelVisualMode
         ) =>
@@ -137,7 +137,7 @@ public abstract partial class UiPanelParamClose<TCloseParam> : UiPanelBaseImpl
     }
 }
 
-public abstract partial class UiPanelParamExternOpen<TOpenParam> : UiPanelParamOpen<TOpenParam>
+public abstract partial class UIPanelParamExternOpen<TOpenParam> : UIPanelParamOpen<TOpenParam>
 {
     protected virtual void OnExitExtern() { }
 

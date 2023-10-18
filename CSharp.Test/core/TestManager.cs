@@ -2,7 +2,7 @@
 using Fractural.Tasks;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public partial class TestManagerImpl : Node
 {
@@ -12,9 +12,9 @@ public partial class TestManagerImpl : Node
 
     private async GDTask RunTestImplAsync()
     {
-        AdpUiPanelManager.LogHandler = TestHelpers.Log;
-        AdpUiPanelManager.LogWarningHandler = TestHelpers.LogWarning;
-        AdpUiPanelManager.LogErrorHandler = TestHelpers.LogError;
+        AdpUIPanelManager.LogHandler = TestHelpers.Log;
+        AdpUIPanelManager.LogWarningHandler = TestHelpers.LogWarning;
+        AdpUIPanelManager.LogErrorHandler = TestHelpers.LogError;
 
         foreach (var module in TestModules)
         {

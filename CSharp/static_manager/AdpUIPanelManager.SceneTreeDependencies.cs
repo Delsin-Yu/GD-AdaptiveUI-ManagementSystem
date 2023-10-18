@@ -2,22 +2,22 @@ using System;
 using System.Threading;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static partial class AdpUiPanelManager
+public static partial class AdpUIPanelManager
 {
     private const string DefaultAssetPath = 
         "res://addons/deyu_adaptive_ui_management_system/adaptive_ui_management_system.tscn";
     
-    private static AdpUiPanelManagerImpl s_ImplInstance;
+    private static AdpUIPanelManagerImpl s_ImplInstance;
 
-    private static AdpUiPanelManagerImpl Impl
+    private static AdpUIPanelManagerImpl Impl
     {
         get
         {
             if (s_ImplInstance != null) return s_ImplInstance;
             
-            var loader = (_AdpUiLoaderImpl)GD.Load<PackedScene>(DefaultAssetPath).Instantiate();
+            var loader = (_AdpUILoaderImpl)GD.Load<PackedScene>(DefaultAssetPath).Instantiate();
             if (Engine.GetMainLoop() is not SceneTree sceneTree)
             {
                 throw new NotSupportedException("Custom main loop is not supported.");
@@ -33,7 +33,7 @@ public static partial class AdpUiPanelManager
         }
     }
 
-    internal static void SetupSceneTreeDependencies(_AdpUiAudioInterfaceImpl audioInterfaceImpl, _AdpUiInputInterceptorImpl inputInterceptorImpl) => 
+    internal static void SetupSceneTreeDependencies(_AdpUIAudioInterfaceImpl audioInterfaceImpl, _AdpUIInputInterceptorImpl inputInterceptorImpl) => 
         s_ImplInstance = new(audioInterfaceImpl, inputInterceptorImpl);
 
 #region Audio Interface

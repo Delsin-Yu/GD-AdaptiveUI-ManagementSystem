@@ -1,4 +1,4 @@
-﻿namespace DEYU.GDUtilities.AdpUiManagementSystem;
+﻿namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
 public enum FadeType
 {
@@ -21,16 +21,16 @@ public enum PanelOpenMode
     /// <summary>
     ///     禁用当前层的所有UI并且在新的面板层开启目标UI
     /// </summary>
-    DisableCurrentUi,
+    DisableCurrentUI,
 
     /// <summary>
     ///     在不禁用当前层的UI的情况下，于同层开启新的UI
     /// </summary>
-    PreserveCurrentUi
+    PreserveCurrentUI
 }
 
 /// <summary>
-///     面板可见状态（仅在<see cref="PanelOpenMode" />为<see cref="PanelOpenMode.DisableCurrentUi" />时可用）
+///     面板可见状态（仅在<see cref="PanelOpenMode" />为<see cref="PanelOpenMode.DisableCurrentUI" />时可用）
 /// </summary>
 public enum PanelVisualMode
 {

@@ -1,18 +1,18 @@
 ﻿using System;
-using DEYU.GDUtilities.AdpUiManagementSystem.Panels;
+using DEYU.GDUtilities.AdpUIManagementSystem.Panels;
 using Fractural.Tasks;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public static class AsyncHelper
 {
     public static GDTask OpenPanelStackAsync<TPanel>
         (
             this TPanel panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TPanel> onPanelCloseCallbackImmediate = null
-        ) where TPanel : UiPanel
+        ) where TPanel : UIPanel
     {
         var token = panelInstance.OnPanelCloseToken;
         panelInstance.OpenPanelStack(panelOpenMode, lastPanelVisualMode, onPanelCloseCallbackImmediate);
@@ -23,10 +23,10 @@ public static class AsyncHelper
         (
             this TPanel panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TPanel> onPanelCloseCallbackImmediate = null
-        ) where TPanel : UiPanelParamOpen<TOpenParam>
+        ) where TPanel : UIPanelParamOpen<TOpenParam>
     {
         var token = panelInstance.OnPanelCloseToken;
         panelInstance.OpenPanelStack(openParam, panelOpenMode, lastPanelVisualMode, onPanelCloseCallbackImmediate);
@@ -35,8 +35,8 @@ public static class AsyncHelper
 
     public static async GDTask<TCloseParam> OpenPanelStackAsync<TCloseParam>
         (
-            this UiPanelParamClose<TCloseParam> panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            this UIPanelParamClose<TCloseParam> panelInstance,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TCloseParam> onPanelCloseCallbackImmediate = null
         )
@@ -55,9 +55,9 @@ public static class AsyncHelper
 
     public static async GDTask<TCloseParam> OpenPanelStackAsync<TOpenParam, TCloseParam>
         (
-            this UiPanelParam<TOpenParam, TCloseParam> panelInstance,
+            this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TCloseParam> onPanelCloseCallbackImmediate = null
         )

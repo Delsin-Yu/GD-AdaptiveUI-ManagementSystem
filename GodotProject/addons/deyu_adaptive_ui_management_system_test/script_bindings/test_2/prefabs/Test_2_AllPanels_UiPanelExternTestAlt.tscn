@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://5oxw2nis82aj"]
 
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/Test_2_AllPanels_UiPanelExternTestAlt.cs" id="1_nqjyq"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/Test_2_AllPanels_UIPanelExternTestAlt.cs" id="1_nqjyq"]
 
-[node name="Test_2_AllPanels_UiPanelExternTest" type="Control" node_paths=PackedStringArray("ActiveOnlyVisualElements")]
+[node name="Test_2_AllPanels_UIPanelExternTest" type="Control" node_paths=PackedStringArray("ActiveOnlyVisualElements")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,6 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 80
-text = "Test_2_AllPanels_UiPanelExternTestAlt"
+text = "Test_2_AllPanels_UIPanelExternTestAlt"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -3,9 +3,9 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public abstract partial class _AdpUiInputInterceptorImpl : Node
+public abstract partial class _AdpUIInputInterceptorImpl : Node
 {
     private uint? m_LastRequestedInputMode;
     private string[][] m_SchemeLayerData;
@@ -18,7 +18,7 @@ public abstract partial class _AdpUiInputInterceptorImpl : Node
     private Array<string[]> InputSchemeLayerData { get; set; } = new(
         new[]
         {
-            AdpUiInputScheme.s_BuiltinUiActionStrings
+            AdpUIInputScheme.s_BuiltinUIActionStrings
         }
     );
 
@@ -29,7 +29,7 @@ public abstract partial class _AdpUiInputInterceptorImpl : Node
     internal void UpdateInputScheme(uint requestedInputScheme)
     {
         if (m_LastRequestedInputMode == requestedInputScheme) return;
-        if (m_SchemeLayerData.Length <= requestedInputScheme) AdpUiPanelManager.LogError($"The requested input scheme ({requestedInputScheme}) is not present");
+        if (m_SchemeLayerData.Length <= requestedInputScheme) AdpUIPanelManager.LogError($"The requested input scheme ({requestedInputScheme}) is not present");
         m_LastRequestedInputMode = requestedInputScheme;
     }
 

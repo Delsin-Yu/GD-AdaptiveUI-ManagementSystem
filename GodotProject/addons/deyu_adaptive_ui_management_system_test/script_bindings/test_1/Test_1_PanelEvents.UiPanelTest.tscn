@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwdggx24ec4re"]
 
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents_UiPanelTest.cs" id="1_ph8qq"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents_UIPanelTest.cs" id="1_ph8qq"]
 
-[node name="Test_1_PanelEvents_UiPanelTest" type="Control" node_paths=PackedStringArray("ActiveOnlyVisualElements")]
+[node name="Test_1_PanelEvents_UIPanelTest" type="Control" node_paths=PackedStringArray("ActiveOnlyVisualElements")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

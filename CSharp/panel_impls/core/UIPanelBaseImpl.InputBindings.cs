@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Core;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-public partial class UiPanelBaseImpl
+public partial class UIPanelBaseImpl
 {
     private static readonly Queue<RegisteredInputEvent> s_NotifyQueue = new();
     private Action m_RegisteredPanelWiseCancel;
@@ -18,10 +18,10 @@ public partial class UiPanelBaseImpl
         m_RegisteredInputEventNames.Clear();
     }
     
-    #warning protected void EnablePanelWiseScrollNavigation() => AdpUiPanelManager.EnableScrollNavigation(this, false);
-    #warning protected void DisablePanelWiseScrollNavigation() => AdpUiPanelManager.DisableScrollNavigation(this, false);
-    #warning protected void EnablePanelWiseScrollHorizontalNavigation() => AdpUiPanelManager.EnableScrollNavigation(this, true);
-    #warning protected void DisablePanelWiseScrollHorizontalNavigation() => AdpUiPanelManager.DisableScrollNavigation(this, true);
+    #warning protected void EnablePanelWiseScrollNavigation() => AdpUIPanelManager.EnableScrollNavigation(this, false);
+    #warning protected void DisablePanelWiseScrollNavigation() => AdpUIPanelManager.DisableScrollNavigation(this, false);
+    #warning protected void EnablePanelWiseScrollHorizontalNavigation() => AdpUIPanelManager.EnableScrollNavigation(this, true);
+    #warning protected void DisablePanelWiseScrollHorizontalNavigation() => AdpUIPanelManager.DisableScrollNavigation(this, true);
     
     private readonly List<string> m_RegisteredInputEventNames = new();
     private readonly Dictionary<string, RegisteredInputEvent> m_RegisteredInputEvent = new();
@@ -85,7 +85,7 @@ public partial class UiPanelBaseImpl
             }
             catch (Exception e)
             {
-                AdpUiPanelManager.LogError(
+                AdpUIPanelManager.LogError(
                     $"""
                      ┌┈┈┈┈ Input Error ┈┈┈┈
                      │ {e.GetType().Name} on executing input action

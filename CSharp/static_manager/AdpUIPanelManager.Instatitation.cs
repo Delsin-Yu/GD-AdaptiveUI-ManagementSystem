@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-using DEYU.GDUtilities.AdpUiManagementSystem.Core;
+using DEYU.GDUtilities.AdpUIManagementSystem.Core;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static partial class AdpUiPanelManager
+public static partial class AdpUIPanelManager
 {
-    public static T PrepareBufferedPanel<T>(this PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UiPanelBaseImpl =>
+    public static T PrepareBufferedPanel<T>(this PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UIPanelBaseImpl =>
         Impl.PrepareBufferedPanelImpl(panelPrefab, preInitializeCallback);
 
-    public static T InstantiateTempPanel<T>(this PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UiPanelBaseImpl =>
+    public static T InstantiateTempPanel<T>(this PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UIPanelBaseImpl =>
         Impl.InstantiateTempPanelImpl(panelPrefab, preInitializeCallback);
 
     public static bool TryDeleteBufferedPanel(PackedScene panelPrefab) => Impl.TryDeleteBufferedPanelImpl(panelPrefab);
@@ -19,12 +19,12 @@ public static partial class AdpUiPanelManager
     
     public static void PopActivePanelTransform(Node scriptOwner) => Impl.PopActivePanelTransformImpl(scriptOwner);
     
-    private partial class AdpUiPanelManagerImpl
+    private partial class AdpUIPanelManagerImpl
     {
-        private Dictionary<PackedScene, UiPanelBaseImpl> BufferedPanel { get; } = new();
+        private Dictionary<PackedScene, UIPanelBaseImpl> BufferedPanel { get; } = new();
         private readonly Stack<(Node ScriptOwner, Control Root)> m_ActivePanelTransform = new();
       
-        public T PrepareBufferedPanelImpl<T>(PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UiPanelBaseImpl
+        public T PrepareBufferedPanelImpl<T>(PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UIPanelBaseImpl
         {
             T panelInstance;
             if (BufferedPanel.TryGetValue(panelPrefab, out var panelInstanceSrc))
@@ -37,10 +37,10 @@ public static partial class AdpUiPanelManager
             return panelInstance;
         }
 
-        public T InstantiateTempPanelImpl<T>(PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UiPanelBaseImpl =>
+        public T InstantiateTempPanelImpl<T>(PackedScene panelPrefab, Action<T> preInitializeCallback = null) where T : UIPanelBaseImpl =>
             InstantiatePanel(panelPrefab, true, preInitializeCallback);
 
-        private T GenerateBufferedPanel<T>(PackedScene panelPrefab, Action<T> preInitializeCallback) where T : UiPanelBaseImpl
+        private T GenerateBufferedPanel<T>(PackedScene panelPrefab, Action<T> preInitializeCallback) where T : UIPanelBaseImpl
         {
             var panelInstance = InstantiatePanel(panelPrefab, false, preInitializeCallback);
             var currentPanelParent = panelPrefab;
@@ -55,7 +55,7 @@ public static partial class AdpUiPanelManager
             return panelInstance;
         }
 
-        private T InstantiatePanel<T>(PackedScene panelParent, bool destroyPanelAfterClose, Action<T> preInitializeCallback = null) where T : UiPanelBaseImpl
+        private T InstantiatePanel<T>(PackedScene panelParent, bool destroyPanelAfterClose, Action<T> preInitializeCallback = null) where T : UIPanelBaseImpl
         {
             var panelNode = panelParent.Instantiate();
 

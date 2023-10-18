@@ -1,3 +1,3 @@
-﻿namespace DEYU.GDUtilities.AdpUiManagementSystem.Test.ScriptBindings;
+﻿namespace DEYU.GDUtilities.AdpUIManagementSystem.Test.ScriptBindings;
 
 public partial class TestManager : TestManagerImpl { }

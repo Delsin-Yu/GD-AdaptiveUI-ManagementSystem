@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public class TestException : Exception
 {

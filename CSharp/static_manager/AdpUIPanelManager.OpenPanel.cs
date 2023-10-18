@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using DEYU.GDUtilities.AdpUiManagementSystem.Core;
-using DEYU.GDUtilities.AdpUiManagementSystem.Panels;
+using DEYU.GDUtilities.AdpUIManagementSystem.Core;
+using DEYU.GDUtilities.AdpUIManagementSystem.Panels;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static partial class AdpUiPanelManager
+public static partial class AdpUIPanelManager
 {
     public static void OpenPanelStack<TPanel>
         (
             this TPanel panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TPanel> onPanelCloseCallback = null
-        ) where TPanel : UiPanel =>
+        ) where TPanel : UIPanel =>
         Impl.PushPanelToPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode)
             .OpenPanel(closed => onPanelCloseCallback?.Invoke((TPanel)closed), panelOpenMode, lastPanelVisualMode);
 
@@ -22,17 +22,17 @@ public static partial class AdpUiPanelManager
         (
             this TPanel panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TPanel> onPanelCloseCallback = null
-        ) where TPanel : UiPanelParamOpen<TOpenParam> =>
+        ) where TPanel : UIPanelParamOpen<TOpenParam> =>
         Impl.PushPanelToPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode)
             .OpenPanel(openParam, closed => onPanelCloseCallback?.Invoke((TPanel)closed), panelOpenMode, lastPanelVisualMode);
 
     public static void OpenPanelStack<TCloseParam>
         (
-            this UiPanelParamClose<TCloseParam> panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            this UIPanelParamClose<TCloseParam> panelInstance,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TCloseParam> onPanelCloseCallback = null
         ) =>
@@ -41,9 +41,9 @@ public static partial class AdpUiPanelManager
 
     public static void OpenPanelStack<TOpenParam, TCloseParam>
         (
-            this UiPanelParam<TOpenParam, TCloseParam> panelInstance,
+            this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action<TCloseParam> onPanelCloseCallback = null
         ) =>
@@ -54,26 +54,26 @@ public static partial class AdpUiPanelManager
     public static void OpenPanelStackA<TPanel>
         (
             this TPanel panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action onPanelCloseCallback = null
-        ) where TPanel : UiPanel =>
+        ) where TPanel : UIPanel =>
         OpenPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
 
     public static void OpenPanelStackA<TPanel, TOpenParam>
         (
             this TPanel panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action onPanelCloseCallback = null
-        ) where TPanel : UiPanelParamOpen<TOpenParam> =>
+        ) where TPanel : UIPanelParamOpen<TOpenParam> =>
         OpenPanelStack(panelInstance, openParam, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
 
     public static void OpenPanelStackA<TCloseParam>
         (
-            this UiPanelParamClose<TCloseParam> panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            this UIPanelParamClose<TCloseParam> panelInstance,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action onPanelCloseCallback = null
         ) =>
@@ -81,24 +81,24 @@ public static partial class AdpUiPanelManager
 
     public static void OpenPanelStackA<TOpenParam, TCloseParam>
         (
-            this UiPanelParam<TOpenParam, TCloseParam> panelInstance,
+            this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
             PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
             Action onPanelCloseCallback = null
         ) =>
         OpenPanelStack(panelInstance, openParam, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
 
-    private partial class AdpUiPanelManagerImpl
+    private partial class AdpUIPanelManagerImpl
     {
         public T PushPanelToPanelStack<T>
             (
                 T panelInstance,
-                PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUi,
+                PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
                 PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual
-            ) where T : UiPanelBaseImpl
+            ) where T : UIPanelBaseImpl
         {
-            Stack<UiPanelBaseImpl> focusingPanelStack;
+            Stack<UIPanelBaseImpl> focusingPanelStack;
 
             // 确保当前界面处于当前面板根的最前端
             var parent = GetCurrentPanelRoot();
@@ -114,7 +114,7 @@ public static partial class AdpUiPanelManager
             TogglePanel(panelInstance, true);
 
             // 在同层面板开启的情况下，生长当前面板栈
-            if (panelOpenMode == PanelOpenMode.PreserveCurrentUi)
+            if (panelOpenMode == PanelOpenMode.PreserveCurrentUI)
             {
                 if (m_PanelStack.Count > 0)
                 {

@@ -7,7 +7,7 @@
         <LangVersion>latest</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
-        <PackageId>DEYU.GDUtilities.AdpUiManagementSystem</PackageId>
+        <PackageId>DEYU.GDUtilities.AdpUIManagementSystem</PackageId>
         <Version>0.0.1-alpha</Version>
         <Authors>DE-YU</Authors>
         <Product>GD Adaptive UI Management System</Product>

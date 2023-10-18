@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Core;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-public abstract partial class UiPanelBaseImpl : Control
+public abstract partial class UIPanelBaseImpl : Control
 {
     private readonly Control[] m_OneLengthSelfArray = new Control[1];
     private Node m_ActiveOnlyVisualElementsTweenKey;
@@ -14,7 +14,7 @@ public abstract partial class UiPanelBaseImpl : Control
 
     private bool m_IsHiddenAtStart;
     private PanelVisualMode m_LastPanelVisualMode;
-    private Action<UiPanelBaseImpl> m_OnPanelCloseCallback;
+    private Action<UIPanelBaseImpl> m_OnPanelCloseCallback;
     private bool m_ReleasingBufferedPanel;
 
     [Export] private AudioStream OverrideOnPanelOpenAudio { get; set; }
@@ -57,12 +57,12 @@ public abstract partial class UiPanelBaseImpl : Control
         PanelCloseFadeFinishTokenSource = new();
         if (!MutePanelCloseAudio)
         {
-            if (OverrideOnPanelCloseAudio != null) AdpUiPanelManager.PlayAudio(OverrideOnPanelCloseAudio);
-            else AdpUiPanelManager.PlayDefaultPanelCloseAudio();
+            if (OverrideOnPanelCloseAudio != null) AdpUIPanelManager.PlayAudio(OverrideOnPanelCloseAudio);
+            else AdpUIPanelManager.PlayDefaultPanelCloseAudio();
         }
 
         OnPanelClose();
-        AdpUiPanelManager.HandlePanelClose(this, m_CurrentPanelOpenMode, m_LastPanelVisualMode);
+        AdpUIPanelManager.HandlePanelClose(this, m_CurrentPanelOpenMode, m_LastPanelVisualMode);
     }
 
     private void ClosePanelImplShared()
@@ -126,16 +126,16 @@ public abstract partial class UiPanelBaseImpl : Control
         {
             foreach (var control in controls)
             {
-                AdpUiPanelManager.SetNodeChildAvailability(control, isOn);
+                AdpUIPanelManager.SetNodeChildAvailability(control, isOn);
             }
 
-            AdpUiPanelManager.DoTween(key, targetValue, duration, onFinish, controls);
+            AdpUIPanelManager.DoTween(key, targetValue, duration, onFinish, controls);
         }
         else
         {
             foreach (var control in controls)
             {
-                AdpUiPanelManager.SetNodeChildAvailability(control, isOn);
+                AdpUIPanelManager.SetNodeChildAvailability(control, isOn);
                 control.Modulate = new(control.Modulate, targetValue);
             }
 

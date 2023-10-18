@@ -1,19 +1,19 @@
 using System;
 using System.Text;
-using DEYU.GDUtilities.AdpUiManagementSystem.Core;
+using DEYU.GDUtilities.AdpUIManagementSystem.Core;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static partial class AdpUiPanelManager
+public static partial class AdpUIPanelManager
 {
-    internal static void HandlePanelClose(UiPanelBaseImpl uiPanelBaseImpl, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
+    internal static void HandlePanelClose(UIPanelBaseImpl uiPanelBaseImpl, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
         => Impl.HandlePanelCloseImpl(uiPanelBaseImpl, currentPanelOpenMode, lastPanelVisualMode);
 
-    private partial class AdpUiPanelManagerImpl
+    private partial class AdpUIPanelManagerImpl
     {
         private readonly StringBuilder m_LastSucceedPanelStack = new();
 
-        public void HandlePanelCloseImpl(UiPanelBaseImpl closingPanel, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
+        public void HandlePanelCloseImpl(UIPanelBaseImpl closingPanel, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
         {
             Log($"[ADP UI] Close Panel: {closingPanel.Name}");
             
@@ -22,7 +22,7 @@ public static partial class AdpUiPanelManager
             RebuildPanelStackString(m_LastSucceedPanelStack);
             
             // 如果该面板是以同层逻辑被打开的，则寻找当前层
-            if (currentPanelOpenMode == PanelOpenMode.PreserveCurrentUi)
+            if (currentPanelOpenMode == PanelOpenMode.PreserveCurrentUI)
             {
                 var topPanel = m_PanelStack.Peek().Peek();
                 
@@ -36,7 +36,7 @@ public static partial class AdpUiPanelManager
                     // 如果弹出之后，面板栈深度 = 0，则切换成默认的操作模式
                     if (m_PanelStack.Count == 0)
                     {
-                        UpdateInputScheme(AdpUiInputScheme.UiInputScheme);
+                        UpdateInputScheme(AdpUIInputScheme.UIInputScheme);
                         return;
                     }
                 }
@@ -71,12 +71,12 @@ public static partial class AdpUiPanelManager
                 }
                 else
                 {
-                    UpdateInputScheme(AdpUiInputScheme.UiInputScheme);
+                    UpdateInputScheme(AdpUIInputScheme.UIInputScheme);
                 }
             }
         }
 
-        private void ThrowIfClosingPanelIsNotTopPanel(UiPanelBaseImpl closingPanel, UiPanelBaseImpl topPanel)
+        private void ThrowIfClosingPanelIsNotTopPanel(UIPanelBaseImpl closingPanel, UIPanelBaseImpl topPanel)
         {
             if (!ReferenceEquals(closingPanel, topPanel))
             {

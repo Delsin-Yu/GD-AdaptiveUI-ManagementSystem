@@ -1,7 +1,7 @@
 ﻿using Fractural.Tasks;
 using Godot;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem.Test;
+namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
 public abstract partial class TestModule : Node
 {

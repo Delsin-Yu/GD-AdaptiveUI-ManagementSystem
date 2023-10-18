@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace DEYU.GDUtilities.AdpUiManagementSystem;
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
-public static class AdpUiInputScheme
+public static class AdpUIInputScheme
 {
-    public const uint UiInputScheme = 0;
+    public const uint UIInputScheme = 0;
 
-    public static ReadOnlySpan<string> BuiltinUiActionStrings => s_BuiltinUiActionStrings;
+    public static ReadOnlySpan<string> BuiltinUIActionStrings => s_BuiltinUIActionStrings;
     
-    internal static readonly string[] s_BuiltinUiActionStrings =
+    internal static readonly string[] s_BuiltinUIActionStrings =
         new[]
         {
             "ui_accept",

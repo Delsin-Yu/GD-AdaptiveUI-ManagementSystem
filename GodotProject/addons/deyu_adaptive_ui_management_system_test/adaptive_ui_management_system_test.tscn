@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dvsbo5s1hvdyt"]
 
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/TestManager.cs" id="1_xvf8y"]
-[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/Test_0_AdpUiLoader.cs" id="2_asr5j"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/Test_0_AdpUILoader.cs" id="2_asr5j"]
 [ext_resource type="AudioStream" uid="uid://d1dr8wthb5tgn" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/UI_Submit.ogg" id="3_d3yea"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents.cs" id="4_nxkp0"]
 [ext_resource type="PackedScene" uid="uid://cwdggx24ec4re" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents.UiPanelTest.tscn" id="5_3785w"]
@@ -23,9 +23,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xvf8y")
-TestModules = [NodePath("Test_0_AdpUiLoader"), NodePath("Test_1_PanelEvents"), NodePath("Test_2_AllPanels")]
+TestModules = [NodePath("Test_0_AdpUILoader"), NodePath("Test_1_PanelEvents"), NodePath("Test_2_AllPanels")]
 
-[node name="Test_0_AdpUiLoader" type="Node" parent="."]
+[node name="Test_0_AdpUILoader" type="Node" parent="."]
 script = ExtResource("2_asr5j")
 TestAudio = ExtResource("3_d3yea")
 
@@ -35,11 +35,11 @@ TestPanel = ExtResource("5_3785w")
 
 [node name="Test_2_AllPanels" type="Node" parent="."]
 script = ExtResource("6_ngss7")
-TestUiPanelExtern = ExtResource("7_doceg")
-TestUiPanelParamClose = ExtResource("8_e3van")
-TestUiPanelParamExternOpen = ExtResource("9_j0hfd")
-TestUiPanelParamOpen = ExtResource("10_3phvt")
-TestUiPanelParam = ExtResource("11_sxnm4")
-TestUiPanel = ExtResource("12_y2xeo")
-TestUiPanelExternAlt = ExtResource("13_gnyfa")
-TestUiPanelParamExternOpenAlt = ExtResource("14_xy4nr")
+TestUIPanelExtern = ExtResource("7_doceg")
+TestUIPanelParamClose = ExtResource("8_e3van")
+TestUIPanelParamExternOpen = ExtResource("9_j0hfd")
+TestUIPanelParamOpen = ExtResource("10_3phvt")
+TestUIPanelParam = ExtResource("11_sxnm4")
+TestUIPanel = ExtResource("12_y2xeo")
+TestUIPanelExternAlt = ExtResource("13_gnyfa")
+TestUIPanelParamExternOpenAlt = ExtResource("14_xy4nr")
