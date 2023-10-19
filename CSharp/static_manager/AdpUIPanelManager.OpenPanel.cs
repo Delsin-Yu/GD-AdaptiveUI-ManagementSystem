@@ -121,6 +121,10 @@ public static partial class AdpUIPanelManager
                     if (m_PanelStack.Count == 0) PushPanelStack();
 
                     focusingPanelStack = m_PanelStack.Peek();
+                    foreach (var item in focusingPanelStack)
+                    {
+                        if(item.CacheCurrentSelection() is SelectionCacheResult.Successful or SelectionCacheResult.NoSelections) break;
+                    }
                 }
                 else
                 {

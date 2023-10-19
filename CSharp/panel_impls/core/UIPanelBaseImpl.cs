@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Godot;
 
@@ -24,6 +25,7 @@ public abstract partial class UIPanelBaseImpl : Control
     private CancellationTokenSource PanelCloseFadeFinishTokenSource { get; set; }
     private CancellationTokenSource PanelCloseTokenSource { get; set; }
     private Control BufferedSelection { get; set; }
+    internal Dictionary<Control, FocusModeEnum> CachedNodeFocusMode { get; } = new();
 
     public sealed override void _Ready() { }
 
@@ -124,18 +126,12 @@ public abstract partial class UIPanelBaseImpl : Control
 
         if (!Mathf.IsZeroApprox(duration))
         {
-            foreach (var control in controls)
-            {
-                AdpUIPanelManager.SetNodeChildAvailability(control, isOn);
-            }
-
             AdpUIPanelManager.DoTween(key, targetValue, duration, onFinish, controls);
         }
         else
         {
             foreach (var control in controls)
             {
-                AdpUIPanelManager.SetNodeChildAvailability(control, isOn);
                 control.Modulate = new(control.Modulate, targetValue);
             }
 

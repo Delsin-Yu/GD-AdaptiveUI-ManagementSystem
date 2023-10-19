@@ -31,6 +31,7 @@ public partial class UIPanelBaseImpl
         IsTempPanel = isTempPanel;
         m_Initialized = true;
         m_ActiveOnlyVisualElementsTweenKey = new();
+        m_ActiveOnlyVisualElementsTweenKey.Name = "VisualElementsTweenKey";
         m_OneLengthSelfArray[0] = this;
         AddChild(m_ActiveOnlyVisualElementsTweenKey);
         OnPanelInitialize();
@@ -68,11 +69,7 @@ public partial class UIPanelBaseImpl
     {
         if (!active)
         {
-            BufferedSelection = null;
-            var currentSelection = GetViewport().GuiGetFocusOwner();
-            if (currentSelection != null)
-                if (IsAncestorOf(currentSelection))
-                    BufferedSelection = currentSelection;
+            CacheCurrentSelection();
 
             if (panelVisualMode == PanelVisualMode.HideVisual)
             {
@@ -91,6 +88,16 @@ public partial class UIPanelBaseImpl
         }
 
         Tween(m_ActiveOnlyVisualElementsTweenKey, active, ActiveOnlyVisualElements);
+    }
+
+    internal SelectionCacheResult CacheCurrentSelection()
+    {
+        BufferedSelection = null;
+        var currentSelection = GetViewport().GuiGetFocusOwner();
+        if (currentSelection == null) return SelectionCacheResult.NoSelections;
+        if (!IsAncestorOf(currentSelection)) return SelectionCacheResult.SelectionIsNotChild;
+        BufferedSelection = currentSelection;
+        return SelectionCacheResult.Successful;
     }
 
     internal void HandlePanelReselection(ref bool hasSuccessfullyRestoredSelection)

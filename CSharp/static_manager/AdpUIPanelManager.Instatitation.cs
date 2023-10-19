@@ -94,7 +94,7 @@ public static partial class AdpUIPanelManager
 
         public void PushActivePanelTransformImpl(Node scriptOwner, Control panelContainer) =>
             //Debug.LogError("Push ControlledPanelTransform: " + transform.name, transform);
-            m_ActivePanelTransform.Push((scriptOwner, panelContainer));
+            m_ActivePanelTransform.Push((scriptOwner!, panelContainer!));
 
         public void PopActivePanelTransformImpl(Node scriptOwner)
         {

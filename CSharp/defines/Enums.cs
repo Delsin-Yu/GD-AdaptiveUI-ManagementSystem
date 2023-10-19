@@ -51,3 +51,10 @@ public enum InputActionPhase
     Released,
     Any
 }
+
+internal enum SelectionCacheResult
+{
+    NoSelections,
+    SelectionIsNotChild,
+    Successful
+}

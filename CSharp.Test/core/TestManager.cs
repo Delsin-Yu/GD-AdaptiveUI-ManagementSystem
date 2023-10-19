@@ -24,5 +24,6 @@ public partial class TestManagerImpl : Node
         }
 
         TestHelpers.Log("Test Finish");
+        GetTree().Quit();
     }
 }

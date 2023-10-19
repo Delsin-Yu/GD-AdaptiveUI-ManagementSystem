@@ -8,7 +8,7 @@ namespace DEYU.GDUtilities.AdpUIManagementSystem;
 public abstract partial class _AdpUIInputInterceptorImpl : Node
 {
     private uint? m_LastRequestedInputMode;
-    private string[][] m_SchemeLayerData;
+    private SchemeLayerData[] m_SchemeLayerData;
     private Viewport m_Viewport;
 
 
@@ -22,9 +22,55 @@ public abstract partial class _AdpUIInputInterceptorImpl : Node
         }
     );
 
+    private class SchemeLayerData
+    {
+        private readonly string[] m_LayerActions;
+        private readonly InputEventMouse[] m_MouseEvents;
+
+        public SchemeLayerData(string[] layerActions)
+        {
+            m_LayerActions = layerActions;
+            m_MouseEvents =
+                m_LayerActions
+                   .SelectMany(
+                        actionName =>
+                            InputMap
+                               .ActionGetEvents(actionName)
+                               .Where(
+                                    inputEvent =>
+                                        inputEvent is InputEventMouse
+                                )
+                               .Cast<InputEventMouse>()
+                    )
+                   .ToArray();
+        }
+
+        public bool HasEvent(InputEvent inputEvent)
+        {
+            var span = m_LayerActions.AsSpan();
+            foreach (var inputActionName in span)
+            {
+                if (InputMap.ActionHasEvent(inputActionName, inputEvent)) return true;
+            }
+
+            return false;
+        }
+
+        public bool HasMouseEvent(InputEventMouse inputEventMouse)
+        {
+            var span = m_MouseEvents.AsSpan();
+            foreach (var mouseInputEventCandidate in span)
+            {
+                if (mouseInputEventCandidate.IsMatch(inputEventMouse)) return true;
+            }
+
+            return false;
+        }
+    }
+
     private Viewport GetCurrentViewport() => m_Viewport ??= GetViewport();
 
-    internal void Load() => m_SchemeLayerData = InputSchemeLayerData.Select(x => x.ToArray()).ToArray();
+    internal void Load() => m_SchemeLayerData = InputSchemeLayerData.Select(layerActions => new SchemeLayerData(layerActions)).ToArray();
 
     internal void UpdateInputScheme(uint requestedInputScheme)
     {
@@ -37,12 +83,25 @@ public abstract partial class _AdpUIInputInterceptorImpl : Node
     {
         if (!IsInsideTree() || m_LastRequestedInputMode == null || m_SchemeLayerData.Length <= m_LastRequestedInputMode) return;
 
-        var currentInputLayer = m_SchemeLayerData[m_LastRequestedInputMode.Value].AsSpan();
-        foreach (var name in currentInputLayer)
+        var schemeLayerDataSpan = m_SchemeLayerData.AsSpan();
+        if (schemeLayerDataSpan[(int)m_LastRequestedInputMode.Value].HasEvent(inputEvent)) return;
+
+        if (inputEvent is InputEventMouse inputEventMouse && !RequireInterceptMouseEvent(m_LastRequestedInputMode.Value, inputEventMouse, schemeLayerDataSpan))
         {
-            if (InputMap.ActionHasEvent(name, inputEvent)) return;
+            return;
+        }
+        
+        GetCurrentViewport().SetInputAsHandled();
+    }
+
+    private static bool RequireInterceptMouseEvent(uint skipIndex, InputEventMouse inputEventMouse, in ReadOnlySpan<SchemeLayerData> schemeLayerData)
+    {
+        for (var index = 0; index < schemeLayerData.Length; index++)
+        {
+            if(index == skipIndex) continue;
+            if(schemeLayerData[index].HasMouseEvent(inputEventMouse)) return true;
         }
 
-        GetCurrentViewport().SetInputAsHandled();
+        return false;
     }
 }

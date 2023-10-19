@@ -43,7 +43,10 @@ public static partial class AdpUIPanelManager
                 
                 // 否则，切换为面板栈顶面板所需的操作模式
                 var currentLayer = m_PanelStack.Peek();
-                UpdateInputScheme(currentLayer.Peek().RequestedInputScheme);
+                topPanel = currentLayer.Peek();
+                UpdateInputScheme(topPanel.RequestedInputScheme);
+                var _ = false;
+                topPanel.HandlePanelReselection(ref _);
             }
             // 如果该面板是以叠层逻辑被打开的，则寻找并且弹出当前层
             else
