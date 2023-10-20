@@ -35,14 +35,14 @@ public static partial class AdpUIPanelManager
         //
         // if (enabled) impl.PropagateCall(PointerButtonMaker_EnablePointerInteraction_MethodName, null, true);
     }
-
+    
     /// <summary>
     /// Enable or Disables the focus mode for <paramref name="root"/> and its recursive children, <paramref name="cachedNodeFocusMode"/> and the focus mode for the node or any affected child should not be tampered with after calling this method with <paramref name="enable"/> set to false. 
     /// </summary>
     /// <param name="root">Root node of the enumeration</param>
     /// <param name="enable">When set to false, the method sets the focus mode for <paramref name="root"/> and its recursive children to None, and writes their original values into <paramref name="cachedNodeFocusMode"/>, when set to true, the method restore the focus mode for <paramref name="root"/> and its recursive children to the values stored inside <paramref name="cachedNodeFocusMode"/> and clears it.</param>
     /// <param name="includeInternal">If includeInternal is false, the recursive enumeration excludes nodes' internal children (see <c>internal</c> parameter in <see cref="M:Godot.Node.AddChild(Godot.Node,System.Boolean,Godot.Node.InternalMode)" />)</param>
-    private static void ToggleFocusModeRecursive(Node root, bool enable, Dictionary<Control, Control.FocusModeEnum> cachedNodeFocusMode, bool includeInternal = false)
+    private static void ToggleFocusModeRecursive(Node root, bool enable, Dictionary<Control, CachedControlInteractableInfo> cachedNodeFocusMode, bool includeInternal = false)
     {
         if (!enable)
         {
@@ -55,18 +55,31 @@ public static partial class AdpUIPanelManager
             cachedNodeFocusMode.Clear();
         }
     }
+    
+    public readonly struct CachedControlInteractableInfo
+    {
+        public readonly Control.FocusModeEnum CachedFocusMode;
+        public readonly Control.MouseFilterEnum CachedMouseFilterEnum;
+
+        public CachedControlInteractableInfo(Control.FocusModeEnum cachedFocusMode, Control.MouseFilterEnum cachedMouseFilterEnum)
+        {
+            CachedFocusMode = cachedFocusMode;
+            CachedMouseFilterEnum = cachedMouseFilterEnum;
+        }
+    } 
 
     /// <summary>
     /// Restore the focus mode for <paramref name="root"/> and its recursive children to the values stored inside <paramref name="cachedNodeFocusMode"/>
     /// </summary>
-    private static void EnableFocusModeRecursive(Node root, Dictionary<Control, Control.FocusModeEnum> cachedNodeFocusMode, bool includeInternal = false)
+    private static void EnableFocusModeRecursive(Node root, Dictionary<Control, CachedControlInteractableInfo> cachedNodeFocusMode, bool includeInternal = false)
     {
         if (root is Control control)
         {
             // Only enable if the node is present in the cache
             if (cachedNodeFocusMode.Remove(control, out var cachedFocusMode))
             {
-                control.FocusMode = cachedFocusMode;
+                control.FocusMode = cachedFocusMode.CachedFocusMode;
+                control.MouseFilter = cachedFocusMode.CachedMouseFilterEnum;
             }
         }
 
@@ -80,16 +93,18 @@ public static partial class AdpUIPanelManager
     /// <summary>
     /// Set the focus mode for <paramref name="root"/> and its recursive children to None, and write their original values into <paramref name="cachedNodeFocusMode"/>   
     /// </summary>
-    private static void DisableFocusModeRecursive(Node root, Dictionary<Control, Control.FocusModeEnum> cachedNodeFocusMode, bool includeInternal = false)
+    private static void DisableFocusModeRecursive(Node root, Dictionary<Control, CachedControlInteractableInfo> cachedNodeFocusMode, bool includeInternal = false)
     {
         if (root is Control control)
         {
             var controlFocusMode = control.FocusMode;
+            var controlMouseFilter = control.MouseFilter;
             // Only cache the control when it is in any form of focusable
-            if (controlFocusMode != Control.FocusModeEnum.None)
+            if (controlFocusMode != Control.FocusModeEnum.None || controlMouseFilter != Control.MouseFilterEnum.Ignore)
             {
-                cachedNodeFocusMode[control] = controlFocusMode;
+                cachedNodeFocusMode[control] = new(controlFocusMode, controlMouseFilter);
                 control.FocusMode = Control.FocusModeEnum.None;
+                control.MouseFilter = Control.MouseFilterEnum.Ignore;
             }
         }
 

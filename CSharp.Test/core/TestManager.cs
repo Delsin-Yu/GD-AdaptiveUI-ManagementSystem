@@ -4,7 +4,7 @@ using Godot;
 
 namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 
-public partial class TestManagerImpl : Node
+public partial class TestManagerImpl : Control
 {
     [Export] private TestModule[] TestModules { get; set; }
 

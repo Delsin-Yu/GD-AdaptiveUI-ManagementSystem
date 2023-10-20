@@ -25,7 +25,7 @@ public abstract partial class UIPanelBaseImpl : Control
     private CancellationTokenSource PanelCloseFadeFinishTokenSource { get; set; }
     private CancellationTokenSource PanelCloseTokenSource { get; set; }
     private Control BufferedSelection { get; set; }
-    internal Dictionary<Control, FocusModeEnum> CachedNodeFocusMode { get; } = new();
+    internal Dictionary<Control, AdpUIPanelManager.CachedControlInteractableInfo> CachedNodeFocusMode { get; } = new();
 
     public sealed override void _Ready() { }
 

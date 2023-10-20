@@ -52,7 +52,7 @@ Exclude = true
 [node name="Test_3_PanelStack" type="Node" parent="." node_paths=PackedStringArray("PanelRoot", "Path")]
 script = ExtResource("15_bm21d")
 Panel = ExtResource("16_1v73x")
-PanelRoot = NodePath("..")
+PanelRoot = NodePath("HBoxContainer")
 Path = NodePath("Label")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Test_3_PanelStack"]
