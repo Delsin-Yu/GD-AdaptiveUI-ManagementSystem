@@ -6,14 +6,14 @@ namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
 public static partial class AdpUIPanelManager
 {
-    internal static void HandlePanelClose(UIPanelBaseImpl uiPanelBaseImpl, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
-        => Impl.HandlePanelCloseImpl(uiPanelBaseImpl, currentPanelOpenMode, lastPanelVisualMode);
+    internal static void HandlePanelClose(UIPanelBaseImpl uiPanelBaseImpl, PanelLayer currentPanelLayer, LayerVisual lastLayerVisual)
+        => Impl.HandlePanelCloseImpl(uiPanelBaseImpl, currentPanelLayer, lastLayerVisual);
 
     private partial class AdpUIPanelManagerImpl
     {
         private readonly StringBuilder m_LastSucceedPanelStack = new();
 
-        public void HandlePanelCloseImpl(UIPanelBaseImpl closingPanel, PanelOpenMode currentPanelOpenMode, PanelVisualMode lastPanelVisualMode)
+        public void HandlePanelCloseImpl(UIPanelBaseImpl closingPanel, PanelLayer currentPanelLayer, LayerVisual lastLayerVisual)
         {
             Log($"[ADP UI] Close Panel: {closingPanel.Name}");
             
@@ -22,7 +22,7 @@ public static partial class AdpUIPanelManager
             RebuildPanelStackString(m_LastSucceedPanelStack);
             
             // 如果该面板是以同层逻辑被打开的，则寻找当前层
-            if (currentPanelOpenMode == PanelOpenMode.PreserveCurrentUI)
+            if (currentPanelLayer == PanelLayer.SameLayer)
             {
                 var topPanel = m_PanelStack.Peek().Peek();
                 
@@ -68,7 +68,7 @@ public static partial class AdpUIPanelManager
 
                     foreach (var panel in currentLayer)
                     {
-                        panel.SetPanelActiveState(true, lastPanelVisualMode);
+                        panel.SetPanelActiveState(true, lastLayerVisual);
                         panel.HandlePanelReselection(ref reselectionBuffer);
                     }
                 }

@@ -42,8 +42,8 @@ public partial class UIPanelBaseImpl
     internal void OpenPanel
         (
             Action<UIPanelBaseImpl> onPanelCloseCallback,
-            PanelOpenMode currentPanelOpenMode,
-            PanelVisualMode lastPanelVisualMode
+            PanelLayer currentPanelLayer,
+            LayerVisual lastLayerVisual
         )
     {
         if (!m_Initialized) throw new InvalidOperationException("禁止在未初始化面板的情况下开启面板");
@@ -53,8 +53,8 @@ public partial class UIPanelBaseImpl
         TweenOn(true);
         IsPanelOpened = true;
 
-        m_CurrentPanelOpenMode = currentPanelOpenMode;
-        m_LastPanelVisualMode = lastPanelVisualMode;
+        m_CurrentPanelLayer = currentPanelLayer;
+        m_LastLayerVisual = lastLayerVisual;
 
         if (!MutePanelOpenAudio)
         {
@@ -65,13 +65,13 @@ public partial class UIPanelBaseImpl
         OnPanelOpen();
     }
 
-    internal void SetPanelActiveState(bool active, PanelVisualMode panelVisualMode)
+    internal void SetPanelActiveState(bool active, LayerVisual layerVisual)
     {
         if (!active)
         {
             CacheCurrentSelection();
 
-            if (panelVisualMode == PanelVisualMode.HideVisual)
+            if (layerVisual == LayerVisual.Hide)
             {
                 m_IsHiddenAtStart = !IsPanelShown;
                 HidePanel();
@@ -82,7 +82,7 @@ public partial class UIPanelBaseImpl
         else
         {
             AdpUIPanelManager.SetNodeChildAvailability(this, true);
-            if (panelVisualMode == PanelVisualMode.HideVisual)
+            if (layerVisual == LayerVisual.Hide)
                 if (!m_IsHiddenAtStart)
                     ShowPanel();
         }

@@ -46,15 +46,15 @@ public abstract partial class UIPanelParam<TOpenParam, TCloseParam> : UIPanelBas
         (
             TOpenParam openParam,
             Action<UIPanelBaseImpl, TCloseParam> onPanelCloseCallback,
-            PanelOpenMode currentPanelOpenMode,
-            PanelVisualMode lastPanelVisualMode
+            PanelLayer currentPanelLayer,
+            LayerVisual lastLayerVisual
         )
     {
         OpenParam = openParam;
         base.OpenPanel(
             x => onPanelCloseCallback?.Invoke(x, CloseParam),
-            currentPanelOpenMode,
-            lastPanelVisualMode
+            currentPanelLayer,
+            lastLayerVisual
         );
     }
 
@@ -83,15 +83,15 @@ public abstract partial class UIPanelParamOpen<TOpenParam> : UIPanelBaseImpl
         (
             TOpenParam openParam,
             Action<UIPanelBaseImpl> onPanelCloseCallback,
-            PanelOpenMode currentPanelOpenMode,
-            PanelVisualMode lastPanelVisualMode
+            PanelLayer currentPanelLayer,
+            LayerVisual lastLayerVisual
         )
     {
         OpenParam = openParam;
         base.OpenPanel(
             onPanelCloseCallback,
-            currentPanelOpenMode,
-            lastPanelVisualMode
+            currentPanelLayer,
+            lastLayerVisual
         );
     }
 
@@ -115,13 +115,13 @@ public abstract partial class UIPanelParamClose<TCloseParam> : UIPanelBaseImpl
     internal void OpenPanel
         (
             Action<UIPanelBaseImpl, TCloseParam> onPanelCloseCallback,
-            PanelOpenMode currentPanelOpenMode,
-            PanelVisualMode lastPanelVisualMode
+            PanelLayer currentPanelLayer,
+            LayerVisual lastLayerVisual
         ) =>
         base.OpenPanel(
             x => onPanelCloseCallback?.Invoke(x, CloseParam),
-            currentPanelOpenMode,
-            lastPanelVisualMode
+            currentPanelLayer,
+            lastLayerVisual
         );
 
     protected void ClosePanel(TCloseParam closeParam)

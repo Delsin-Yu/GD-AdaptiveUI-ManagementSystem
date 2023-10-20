@@ -11,91 +11,91 @@ public static partial class AdpUIPanelManager
     public static void OpenPanelStack<TPanel>
         (
             this TPanel panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TPanel> onPanelCloseCallback = null
         ) where TPanel : UIPanel =>
-        Impl.PushPanelToPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode)
-            .OpenPanel(closed => onPanelCloseCallback?.Invoke((TPanel)closed), panelOpenMode, lastPanelVisualMode);
+        Impl.PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
+            .OpenPanel(closed => onPanelCloseCallback?.Invoke((TPanel)closed), panelLayer, lastLayerVisual);
 
     public static void OpenPanelStack<TPanel, TOpenParam>
         (
             this TPanel panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TPanel> onPanelCloseCallback = null
         ) where TPanel : UIPanelParamOpen<TOpenParam> =>
-        Impl.PushPanelToPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode)
-            .OpenPanel(openParam, closed => onPanelCloseCallback?.Invoke((TPanel)closed), panelOpenMode, lastPanelVisualMode);
+        Impl.PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
+            .OpenPanel(openParam, closed => onPanelCloseCallback?.Invoke((TPanel)closed), panelLayer, lastLayerVisual);
 
     public static void OpenPanelStack<TCloseParam>
         (
             this UIPanelParamClose<TCloseParam> panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TCloseParam> onPanelCloseCallback = null
         ) =>
-        Impl.PushPanelToPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode)
-            .OpenPanel((_, param) => onPanelCloseCallback?.Invoke(param), panelOpenMode, lastPanelVisualMode);
+        Impl.PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
+            .OpenPanel((_, param) => onPanelCloseCallback?.Invoke(param), panelLayer, lastLayerVisual);
 
     public static void OpenPanelStack<TOpenParam, TCloseParam>
         (
             this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TCloseParam> onPanelCloseCallback = null
         ) =>
         Impl
-           .PushPanelToPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode)
-           .OpenPanel(openParam, (_, param) => onPanelCloseCallback?.Invoke(param), panelOpenMode, lastPanelVisualMode);
+           .PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
+           .OpenPanel(openParam, (_, param) => onPanelCloseCallback?.Invoke(param), panelLayer, lastLayerVisual);
 
     public static void OpenPanelStackA<TPanel>
         (
             this TPanel panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action onPanelCloseCallback = null
         ) where TPanel : UIPanel =>
-        OpenPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
+        OpenPanelStack(panelInstance, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
 
     public static void OpenPanelStackA<TPanel, TOpenParam>
         (
             this TPanel panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action onPanelCloseCallback = null
         ) where TPanel : UIPanelParamOpen<TOpenParam> =>
-        OpenPanelStack(panelInstance, openParam, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
+        OpenPanelStack(panelInstance, openParam, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
 
     public static void OpenPanelStackA<TCloseParam>
         (
             this UIPanelParamClose<TCloseParam> panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action onPanelCloseCallback = null
         ) =>
-        OpenPanelStack(panelInstance, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
+        OpenPanelStack(panelInstance, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
 
     public static void OpenPanelStackA<TOpenParam, TCloseParam>
         (
             this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action onPanelCloseCallback = null
         ) =>
-        OpenPanelStack(panelInstance, openParam, panelOpenMode, lastPanelVisualMode, _ => onPanelCloseCallback?.Invoke());
+        OpenPanelStack(panelInstance, openParam, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
 
     private partial class AdpUIPanelManagerImpl
     {
         public T PushPanelToPanelStack<T>
             (
                 T panelInstance,
-                PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-                PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual
+                PanelLayer panelLayer,
+                LayerVisual lastLayerVisual
             ) where T : UIPanelBaseImpl
         {
             Stack<UIPanelBaseImpl> focusingPanelStack;
@@ -114,7 +114,7 @@ public static partial class AdpUIPanelManager
             TogglePanel(panelInstance, true);
 
             // 在同层面板开启的情况下，生长当前面板栈
-            if (panelOpenMode == PanelOpenMode.PreserveCurrentUI)
+            if (panelLayer == PanelLayer.SameLayer)
             {
                 if (m_PanelStack.Count > 0)
                 {
@@ -140,7 +140,7 @@ public static partial class AdpUIPanelManager
                     var topmostPanelStack = m_PanelStack.Peek();
                     foreach (var item in topmostPanelStack)
                     {
-                        item.SetPanelActiveState(false, lastPanelVisualMode);
+                        item.SetPanelActiveState(false, lastLayerVisual);
                     }
                 }
 

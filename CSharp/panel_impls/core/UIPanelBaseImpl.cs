@@ -10,11 +10,11 @@ public abstract partial class UIPanelBaseImpl : Control
     private readonly Control[] m_OneLengthSelfArray = new Control[1];
     private Node m_ActiveOnlyVisualElementsTweenKey;
 
-    private PanelOpenMode m_CurrentPanelOpenMode;
+    private PanelLayer m_CurrentPanelLayer;
     private bool m_Initialized;
 
     private bool m_IsHiddenAtStart;
-    private PanelVisualMode m_LastPanelVisualMode;
+    private LayerVisual m_LastLayerVisual;
     private Action<UIPanelBaseImpl> m_OnPanelCloseCallback;
     private bool m_ReleasingBufferedPanel;
 
@@ -64,7 +64,7 @@ public abstract partial class UIPanelBaseImpl : Control
         }
 
         OnPanelClose();
-        AdpUIPanelManager.HandlePanelClose(this, m_CurrentPanelOpenMode, m_LastPanelVisualMode);
+        AdpUIPanelManager.HandlePanelClose(this, m_CurrentPanelLayer, m_LastLayerVisual);
     }
 
     private void ClosePanelImplShared()

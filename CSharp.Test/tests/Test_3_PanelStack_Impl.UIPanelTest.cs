@@ -10,6 +10,7 @@ public partial class Test_3_PanelStack_Impl
         [Export] private Label LabelText { get; set; }
         [Export] private Button NewPanelSameLayer { get; set; }
         [Export] private Button NewPanelNextLayer { get; set; }
+        [Export] private Button NewPanelNextLayerHidePrev { get; set; }
 
         protected override void OnPanelInitialize()
         {
@@ -20,12 +21,17 @@ public partial class Test_3_PanelStack_Impl
                 () =>
                     OpenParam.Item2
                        .InstantiateTempPanel<UIPanelTest>()
-                       .OpenPanelStack(("PanelOpenMode.PreserveCurrentUI, PanelVisualMode.PreserveVisual", OpenParam.Item2), PanelOpenMode.PreserveCurrentUI, PanelVisualMode.PreserveVisual);
+                       .OpenPanelStack(("NewPanelSameLayer", OpenParam.Item2), PanelLayer.SameLayer);
             NewPanelNextLayer.Pressed +=
                 () =>
                     OpenParam.Item2
                        .InstantiateTempPanel<UIPanelTest>()
-                       .OpenPanelStack(("PanelOpenMode.DisableCurrentUI, PanelVisualMode.PreserveVisual", OpenParam.Item2), PanelOpenMode.DisableCurrentUI, PanelVisualMode.PreserveVisual);
+                       .OpenPanelStack(("NewPanelNextLayer", OpenParam.Item2));
+            NewPanelNextLayerHidePrev.Pressed +=
+                () =>
+                    OpenParam.Item2
+                       .InstantiateTempPanel<UIPanelTest>()
+                       .OpenPanelStack(("NewPanelNextLayerHidePrev", OpenParam.Item2), lastLayerVisual: LayerVisual.Hide);
         }
 
         protected override void OnPanelOpen((string, PackedScene) param)

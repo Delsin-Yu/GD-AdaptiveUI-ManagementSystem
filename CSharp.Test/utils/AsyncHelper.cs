@@ -9,13 +9,13 @@ public static class AsyncHelper
     public static GDTask OpenPanelStackAsync<TPanel>
         (
             this TPanel panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TPanel> onPanelCloseCallbackImmediate = null
         ) where TPanel : UIPanel
     {
         var token = panelInstance.OnPanelCloseToken;
-        panelInstance.OpenPanelStack(panelOpenMode, lastPanelVisualMode, onPanelCloseCallbackImmediate);
+        panelInstance.OpenPanelStack(panelLayer, lastLayerVisual, onPanelCloseCallbackImmediate);
         return GDTask.WaitUntilCanceled(token).SuppressCancellationThrow();
     }
 
@@ -23,27 +23,27 @@ public static class AsyncHelper
         (
             this TPanel panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TPanel> onPanelCloseCallbackImmediate = null
         ) where TPanel : UIPanelParamOpen<TOpenParam>
     {
         var token = panelInstance.OnPanelCloseToken;
-        panelInstance.OpenPanelStack(openParam, panelOpenMode, lastPanelVisualMode, onPanelCloseCallbackImmediate);
+        panelInstance.OpenPanelStack(openParam, panelLayer, lastLayerVisual, onPanelCloseCallbackImmediate);
         return GDTask.WaitUntilCanceled(token).SuppressCancellationThrow();
     }
 
     public static async GDTask<TCloseParam> OpenPanelStackAsync<TCloseParam>
         (
             this UIPanelParamClose<TCloseParam> panelInstance,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TCloseParam> onPanelCloseCallbackImmediate = null
         )
     {
         var panelReturnValue = default(TCloseParam);
         var token = panelInstance.OnPanelCloseToken;
-        panelInstance.OpenPanelStack(panelOpenMode, lastPanelVisualMode,
+        panelInstance.OpenPanelStack(panelLayer, lastLayerVisual,
             returnValue =>
             {
                 panelReturnValue = returnValue;
@@ -57,14 +57,14 @@ public static class AsyncHelper
         (
             this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
-            PanelOpenMode panelOpenMode = PanelOpenMode.DisableCurrentUI,
-            PanelVisualMode lastPanelVisualMode = PanelVisualMode.PreserveVisual,
+            PanelLayer panelLayer = PanelLayer.NewLayer,
+            LayerVisual lastLayerVisual = LayerVisual.Preserve,
             Action<TCloseParam> onPanelCloseCallbackImmediate = null
         )
     {
         var panelReturnValue = default(TCloseParam);
         var token = panelInstance.OnPanelCloseToken;
-        panelInstance.OpenPanelStack(openParam, panelOpenMode, lastPanelVisualMode,
+        panelInstance.OpenPanelStack(openParam, panelLayer, lastLayerVisual,
             returnValue =>
             {
                 panelReturnValue = returnValue;

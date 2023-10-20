@@ -16,33 +16,33 @@ public enum FadeType
 /// <summary>
 ///     面板打开模式
 /// </summary>
-public enum PanelOpenMode
+public enum PanelLayer
 {
     /// <summary>
     ///     禁用当前层的所有UI并且在新的面板层开启目标UI
     /// </summary>
-    DisableCurrentUI,
+    NewLayer,
 
     /// <summary>
     ///     在不禁用当前层的UI的情况下，于同层开启新的UI
     /// </summary>
-    PreserveCurrentUI
+    SameLayer
 }
 
 /// <summary>
-///     面板可见状态（仅在<see cref="PanelOpenMode" />为<see cref="PanelOpenMode.DisableCurrentUI" />时可用）
+///     面板可见状态（仅在<see cref="PanelLayer" />为<see cref="PanelLayer.NewLayer" />时可用）
 /// </summary>
-public enum PanelVisualMode
+public enum LayerVisual
 {
     /// <summary>
     ///     不隐藏被禁用层的所有UI
     /// </summary>
-    PreserveVisual,
+    Preserve,
 
     /// <summary>
     ///     隐藏被禁用层的所有UI
     /// </summary>
-    HideVisual
+    Hide
 }
 
 public enum InputActionPhase

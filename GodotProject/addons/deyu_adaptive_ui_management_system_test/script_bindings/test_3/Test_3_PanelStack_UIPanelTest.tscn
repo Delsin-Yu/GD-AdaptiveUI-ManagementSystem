@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_3/Test_3_PanelStack_UIPanelTest.cs" id="1_8858a"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system/script_bindings/MouseFocus.cs" id="2_80wps"]
 
-[node name="Test_3_PanelStack_UIPanelTest2" type="Control" node_paths=PackedStringArray("LabelText", "NewPanelSameLayer", "NewPanelNextLayer", "ActiveOnlyVisualElements")]
+[node name="Test_3_PanelStack_UIPanelTest2" type="Control" node_paths=PackedStringArray("LabelText", "NewPanelSameLayer", "NewPanelNextLayer", "NewPanelNextLayerHidePrev", "ActiveOnlyVisualElements")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ script = ExtResource("1_8858a")
 LabelText = NodePath("Label")
 NewPanelSameLayer = NodePath("VBoxContainer/Button")
 NewPanelNextLayer = NodePath("VBoxContainer/Button2")
+NewPanelNextLayerHidePrev = NodePath("VBoxContainer/Button3")
 ActiveOnlyVisualElements = []
 
 [node name="Test_3_PanelStack_UIPanelTest" type="ColorRect" parent="."]
@@ -49,7 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
-text = "同层界面"
+text = "Same Layer"
 script = ExtResource("2_80wps")
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
@@ -58,7 +59,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
-text = "隔层界面"
+text = "New Layer"
+script = ExtResource("2_80wps")
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 107)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "New Layer Hide Previous"
 script = ExtResource("2_80wps")
 
 [node name="Label" type="Label" parent="."]
