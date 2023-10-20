@@ -68,6 +68,7 @@ layout_mode = 2
 
 [node name="MenuButton" type="MenuButton" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 2
 text = "Test Menu Button"
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer2"]
