@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvsbo5s1hvdyt"]
+[gd_scene load_steps=19 format=3 uid="uid://dvsbo5s1hvdyt"]
 
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/TestManager.cs" id="1_xvf8y"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/Test_0_AdpUILoader.cs" id="2_asr5j"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://ciq8rggp4majb" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_2/prefabs/Test_2_AllPanels_UiPanelParamExternOpenTestAlt.tscn" id="14_xy4nr"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_3/Test_3_PanelStack.cs" id="15_bm21d"]
 [ext_resource type="PackedScene" uid="uid://i1mw4e3dnk3r" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_3/Test_3_PanelStack_UIPanelTest.tscn" id="16_1v73x"]
+[ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_4/Test_4_GodotUIComponents.cs" id="17_g61g3"]
+[ext_resource type="PackedScene" uid="uid://6cxp06eif72g" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_4/Test_4_GodotUIComponents.tscn" id="18_ko5wx"]
 
 [node name="TestManager" type="Control" node_paths=PackedStringArray("TestModules")]
 layout_mode = 3
@@ -25,17 +27,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xvf8y")
-TestModules = [NodePath("Test_0_AdpUILoader"), NodePath("Test_1_PanelEvents"), NodePath("Test_2_AllPanels"), NodePath("Test_3_PanelStack")]
+TestModules = [NodePath("Test_0_AdpUILoader"), NodePath("Test_1_PanelEvents"), NodePath("Test_2_AllPanels"), NodePath("Test_3_PanelStack"), NodePath("Test_4_GodotUIComponents")]
 
 [node name="Test_0_AdpUILoader" type="Node" parent="."]
 script = ExtResource("2_asr5j")
 TestAudio = ExtResource("3_d3yea")
-Exclude = true
 
 [node name="Test_1_PanelEvents" type="Node" parent="."]
 script = ExtResource("4_nxkp0")
 TestPanel = ExtResource("5_3785w")
-Exclude = true
 
 [node name="Test_2_AllPanels" type="Node" parent="."]
 script = ExtResource("6_ngss7")
@@ -47,7 +47,6 @@ TestUIPanelParam = ExtResource("11_sxnm4")
 TestUIPanel = ExtResource("12_y2xeo")
 TestUIPanelExternAlt = ExtResource("13_gnyfa")
 TestUIPanelParamExternOpenAlt = ExtResource("14_xy4nr")
-Exclude = true
 
 [node name="Test_3_PanelStack" type="Node" parent="." node_paths=PackedStringArray("PanelRoot", "Path")]
 script = ExtResource("15_bm21d")
@@ -69,3 +68,7 @@ anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
 text = "Scene Path"
+
+[node name="Test_4_GodotUIComponents" type="Node" parent="."]
+script = ExtResource("17_g61g3")
+Panel = ExtResource("18_ko5wx")
