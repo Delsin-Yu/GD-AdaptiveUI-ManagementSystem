@@ -31,7 +31,7 @@ public partial class Test_3_PanelStack_Impl
                 () =>
                     OpenParam.Item2
                        .InstantiateTempPanel<UIPanelTest>()
-                       .OpenPanelStack(("NewPanelNextLayerHidePrev", OpenParam.Item2), lastLayerVisual: LayerVisual.Hide);
+                       .OpenPanelStack(("NewPanelNextLayerHidePrev", OpenParam.Item2), lastLayerVisual: LayerVisual.Hidden);
         }
 
         protected override void OnPanelOpen((string, PackedScene) param)

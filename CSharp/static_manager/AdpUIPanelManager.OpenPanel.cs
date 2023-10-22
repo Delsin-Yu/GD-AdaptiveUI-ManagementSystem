@@ -12,7 +12,7 @@ public static partial class AdpUIPanelManager
         (
             this TPanel panelInstance,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TPanel> onPanelCloseCallback = null
         ) where TPanel : UIPanel =>
         Impl.PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
@@ -23,7 +23,7 @@ public static partial class AdpUIPanelManager
             this TPanel panelInstance,
             TOpenParam openParam,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TPanel> onPanelCloseCallback = null
         ) where TPanel : UIPanelParamOpen<TOpenParam> =>
         Impl.PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
@@ -33,7 +33,7 @@ public static partial class AdpUIPanelManager
         (
             this UIPanelParamClose<TCloseParam> panelInstance,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TCloseParam> onPanelCloseCallback = null
         ) =>
         Impl.PushPanelToPanelStack(panelInstance, panelLayer, lastLayerVisual)
@@ -44,7 +44,7 @@ public static partial class AdpUIPanelManager
             this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TCloseParam> onPanelCloseCallback = null
         ) =>
         Impl
@@ -55,7 +55,7 @@ public static partial class AdpUIPanelManager
         (
             this TPanel panelInstance,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action onPanelCloseCallback = null
         ) where TPanel : UIPanel =>
         OpenPanelStack(panelInstance, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
@@ -65,7 +65,7 @@ public static partial class AdpUIPanelManager
             this TPanel panelInstance,
             TOpenParam openParam,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action onPanelCloseCallback = null
         ) where TPanel : UIPanelParamOpen<TOpenParam> =>
         OpenPanelStack(panelInstance, openParam, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
@@ -74,7 +74,7 @@ public static partial class AdpUIPanelManager
         (
             this UIPanelParamClose<TCloseParam> panelInstance,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action onPanelCloseCallback = null
         ) =>
         OpenPanelStack(panelInstance, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
@@ -84,7 +84,7 @@ public static partial class AdpUIPanelManager
             this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action onPanelCloseCallback = null
         ) =>
         OpenPanelStack(panelInstance, openParam, panelLayer, lastLayerVisual, _ => onPanelCloseCallback?.Invoke());
@@ -121,9 +121,10 @@ public static partial class AdpUIPanelManager
                     if (m_PanelStack.Count == 0) PushPanelStack();
 
                     focusingPanelStack = m_PanelStack.Peek();
+                    Control currentFocusingControl = null;
                     foreach (var item in focusingPanelStack)
                     {
-                        if(item.CacheCurrentSelection() is SelectionCacheResult.Successful or SelectionCacheResult.NoSelections) break;
+                        if(item.CacheCurrentSelection(ref currentFocusingControl) is SelectionCacheResult.Successful or SelectionCacheResult.NoSelections) break;
                     }
                 }
                 else

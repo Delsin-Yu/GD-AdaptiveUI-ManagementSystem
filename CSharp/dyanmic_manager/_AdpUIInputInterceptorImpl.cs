@@ -5,12 +5,14 @@ using Godot.Collections;
 
 namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
+/// <summary>
+/// Input Interceptor the framework uses for blocking input events from non active input schemes
+/// </summary>
 public abstract partial class _AdpUIInputInterceptorImpl : Node
 {
     private uint? m_LastRequestedInputMode;
     private SchemeLayerData[] m_SchemeLayerData;
     private Viewport m_Viewport;
-
 
     [Export] public string CancelActionName { get; private set; } = "ui_cancel";
 
@@ -18,7 +20,7 @@ public abstract partial class _AdpUIInputInterceptorImpl : Node
     private Array<string[]> InputSchemeLayerData { get; set; } = new(
         new[]
         {
-            AdpUIInputScheme.s_BuiltinUIActionStrings
+            AdpUIInputScheme.BuiltinUIActionStrings.ToArray()
         }
     );
 
@@ -36,10 +38,7 @@ public abstract partial class _AdpUIInputInterceptorImpl : Node
                         actionName =>
                             InputMap
                                .ActionGetEvents(actionName)
-                               .Where(
-                                    inputEvent =>
-                                        inputEvent is InputEventMouse
-                                )
+                               .Where(inputEvent => inputEvent is InputEventMouse)
                                .Cast<InputEventMouse>()
                     )
                    .ToArray();
@@ -90,7 +89,7 @@ public abstract partial class _AdpUIInputInterceptorImpl : Node
         {
             return;
         }
-        
+
         GetCurrentViewport().SetInputAsHandled();
     }
 
@@ -98,8 +97,8 @@ public abstract partial class _AdpUIInputInterceptorImpl : Node
     {
         for (var index = 0; index < schemeLayerData.Length; index++)
         {
-            if(index == skipIndex) continue;
-            if(schemeLayerData[index].HasMouseEvent(inputEventMouse)) return true;
+            if (index == skipIndex) continue;
+            if (schemeLayerData[index].HasMouseEvent(inputEventMouse)) return true;
         }
 
         return false;

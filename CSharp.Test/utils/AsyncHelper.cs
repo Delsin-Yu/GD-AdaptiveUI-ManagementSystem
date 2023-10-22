@@ -10,7 +10,7 @@ public static class AsyncHelper
         (
             this TPanel panelInstance,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TPanel> onPanelCloseCallbackImmediate = null
         ) where TPanel : UIPanel
     {
@@ -24,7 +24,7 @@ public static class AsyncHelper
             this TPanel panelInstance,
             TOpenParam openParam,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TPanel> onPanelCloseCallbackImmediate = null
         ) where TPanel : UIPanelParamOpen<TOpenParam>
     {
@@ -37,7 +37,7 @@ public static class AsyncHelper
         (
             this UIPanelParamClose<TCloseParam> panelInstance,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TCloseParam> onPanelCloseCallbackImmediate = null
         )
     {
@@ -58,7 +58,7 @@ public static class AsyncHelper
             this UIPanelParam<TOpenParam, TCloseParam> panelInstance,
             TOpenParam openParam,
             PanelLayer panelLayer = PanelLayer.NewLayer,
-            LayerVisual lastLayerVisual = LayerVisual.Preserve,
+            LayerVisual lastLayerVisual = LayerVisual.Visible,
             Action<TCloseParam> onPanelCloseCallbackImmediate = null
         )
     {

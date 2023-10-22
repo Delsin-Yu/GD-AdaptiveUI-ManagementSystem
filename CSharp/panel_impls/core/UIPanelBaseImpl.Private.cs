@@ -69,9 +69,10 @@ public partial class UIPanelBaseImpl
     {
         if (!active)
         {
-            CacheCurrentSelection();
+            Control control = null;
+            CacheCurrentSelection(ref control);
 
-            if (layerVisual == LayerVisual.Hide)
+            if (layerVisual == LayerVisual.Hidden)
             {
                 m_IsHiddenAtStart = !IsPanelShown;
                 HidePanel();
@@ -82,7 +83,7 @@ public partial class UIPanelBaseImpl
         else
         {
             AdpUIPanelManager.SetNodeChildAvailability(this, true);
-            if (layerVisual == LayerVisual.Hide)
+            if (layerVisual == LayerVisual.Hidden)
                 if (!m_IsHiddenAtStart)
                     ShowPanel();
         }
@@ -90,10 +91,10 @@ public partial class UIPanelBaseImpl
         Tween(m_ActiveOnlyVisualElementsTweenKey, active, ActiveOnlyVisualElements);
     }
 
-    internal SelectionCacheResult CacheCurrentSelection()
+    internal SelectionCacheResult CacheCurrentSelection(ref Control currentSelection)
     {
         BufferedSelection = null;
-        var currentSelection = GetViewport().GuiGetFocusOwner();
+        currentSelection ??= GetViewport().GuiGetFocusOwner();
         if (currentSelection == null) return SelectionCacheResult.NoSelections;
         if (!IsAncestorOf(currentSelection)) return SelectionCacheResult.SelectionIsNotChild;
         BufferedSelection = currentSelection;

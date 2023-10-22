@@ -4,18 +4,33 @@ using Godot;
 
 namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
+/// <summary>
+/// Audio manager the framework uses for playing sound effects 
+/// </summary>
 public partial class _AdpUIAudioInterfaceImpl : Node
 {
+    /// <summary>
+    /// Queue for storing non-playing audio stream players
+    /// </summary>
     private readonly Queue<AudioStreamPlayer> m_AvailableAudioStreamPlayers = new();
+    
+    /// <summary>
+    /// Queue for storing playing audio stream players
+    /// </summary>
     private readonly List<AudioStreamPlayer> m_OccupiedAudioStreamPlayers = new();
+    
+    /// <summary>
+    /// HashSet for checking if an audio stream player is cached 
+    /// </summary>
     private readonly HashSet<AudioStreamPlayer> m_PreloadedAudioStreamInstances = new();
+    
     private float m_VolumeDb;
     private bool m_VolumeChanged;
     [Export] private uint PreloadAudioStreamPlayerCount { get; set; } = 4;
     [Export] private AudioStream DefaultPanelOpenAudio { get; set; }
     [Export] private AudioStream DefaultPanelCloseAudio { get; set; }
 
-    [Export] public float VolumeDb
+    [Export] internal float VolumeDb
     {
         get => m_VolumeDb;
         set

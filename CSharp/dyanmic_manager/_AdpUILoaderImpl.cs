@@ -2,6 +2,9 @@
 
 namespace DEYU.GDUtilities.AdpUIManagementSystem;
 
+/// <summary>
+/// Data containers consumed when framework is initializing
+/// </summary>
 public partial class _AdpUILoaderImpl : CanvasLayer
 {
     [Export] internal _AdpUIAudioInterfaceImpl AudioInterfaceImpl { get; private set; }

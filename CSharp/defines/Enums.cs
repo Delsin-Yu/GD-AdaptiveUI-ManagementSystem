@@ -1,60 +1,89 @@
-﻿namespace DEYU.GDUtilities.AdpUIManagementSystem;
+﻿using Godot;
 
+namespace DEYU.GDUtilities.AdpUIManagementSystem;
+
+/// <summary>
+/// Defines the behaviour when performing visual tween on the specified element(s)
+/// </summary>
 public enum FadeType
 {
     /// <summary>
-    ///     出现
+    /// Element is appearing
     /// </summary>
     FadeIn,
 
     /// <summary>
-    ///     消失
+    /// Element is disappearing
     /// </summary>
     FadeOut
 }
 
 /// <summary>
-///     面板打开模式
+/// Defines the behaviour when opening a new panel
 /// </summary>
 public enum PanelLayer
 {
     /// <summary>
-    ///     禁用当前层的所有UI并且在新的面板层开启目标UI
+    /// Opens the panel in new panel layer, which means every panel inside the previous layer will no longer focusable or react to pointer click
     /// </summary>
     NewLayer,
 
     /// <summary>
-    ///     在不禁用当前层的UI的情况下，于同层开启新的UI
+    /// Opens the panel in current layer, which means every panel inside this layer will remains focusable and react to pointer click if specified via <see cref="Godot.Control.MouseFilter"/>
     /// </summary>
     SameLayer
 }
 
 /// <summary>
-///     面板可见状态（仅在<see cref="PanelLayer" />为<see cref="PanelLayer.NewLayer" />时可用）
+/// When opening a panel in <see cref="PanelLayer.NewLayer"/> mode, controls the visual status of panels inside the previous layer
 /// </summary>
 public enum LayerVisual
 {
     /// <summary>
-    ///     不隐藏被禁用层的所有UI
+    /// When opening a panel in <see cref="PanelLayer.NewLayer"/> mode, every panel inside the previous layer remains visible
     /// </summary>
-    Preserve,
+    Visible,
 
     /// <summary>
-    ///     隐藏被禁用层的所有UI
+    /// When opening a panel in <see cref="PanelLayer.NewLayer"/> mode, every panel will fades out and become hidden
     /// </summary>
-    Hide
+    Hidden
 }
 
+/// <summary>
+/// Define the input phase of a specific <see cref="Godot.InputEvent"/>
+/// </summary>
 public enum InputActionPhase
 {
+    /// <summary>
+    /// Triggers when the <see cref="InputEvent.IsPressed"/> method of the <see cref="InputEvent"/> returns true 
+    /// </summary>
     Pressed,
+    /// <summary>
+    /// Triggers when the <see cref="InputEvent.IsReleased"/> method of the <see cref="InputEvent"/> returns true 
+    /// </summary>
     Released,
+    /// <summary>
+    /// Triggers when the <see cref="InputEvent.IsPressed"/> or the <see cref="InputEvent.IsReleased"/> method of the <see cref="InputEvent"/> returns true
+    /// </summary>
     Any
 }
 
+/// <summary>
+/// Internal enum for indicating the selection cache result when opening panel in <see cref="PanelLayer.NewLayer"/> 
+/// </summary>
 internal enum SelectionCacheResult
 {
+    /// <summary>
+    /// Nothing is currently selected system wise, the caching enumeration should stop
+    /// </summary>
     NoSelections,
+    /// <summary>
+    /// Currently focusing control is not a child of the specified panel, the caching enumeration should continues
+    /// </summary>
     SelectionIsNotChild,
+    /// <summary>
+    /// Currently focusing control is a child of the specified panel, and is cached successfully, the caching enumeration should stop
+    /// </summary>
     Successful
 }
