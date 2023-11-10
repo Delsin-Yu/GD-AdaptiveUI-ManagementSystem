@@ -8,7 +8,6 @@ public partial class Test_3_PanelStack_Impl : TestModule
 {
     [Export] private PackedScene Panel { get; set; }
     [Export] private Control PanelRoot { get; set; }
-    [Export] private Label Path { get; set; }
 
     public override async GDTask RunTestAsync()
     {
@@ -20,11 +19,5 @@ public partial class Test_3_PanelStack_Impl : TestModule
                    .OpenPanelStackAsync(("Base", Panel))
         );
         TestHelpers.Run(() => AdpUIPanelManager.PopActivePanelTransform(this));
-    }
-
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        Path.Text = GetViewport().GuiGetFocusOwner()?.GetPath() ?? "Null";
     }
 }

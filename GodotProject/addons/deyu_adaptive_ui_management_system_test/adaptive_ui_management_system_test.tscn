@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvsbo5s1hvdyt"]
+[gd_scene load_steps=20 format=3 uid="uid://dvsbo5s1hvdyt"]
 
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/TestManager.cs" id="1_xvf8y"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/Test_0_AdpUILoader.cs" id="2_asr5j"]
+[ext_resource type="PackedScene" uid="uid://d2bnkbw0ooj0d" path="res://addons/deyu_adaptive_ui_management_system/adaptive_ui_management_system.tscn" id="2_yn5ev"]
 [ext_resource type="AudioStream" uid="uid://d1dr8wthb5tgn" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_0/UI_Submit.ogg" id="3_d3yea"]
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents.cs" id="4_nxkp0"]
 [ext_resource type="PackedScene" uid="uid://cwdggx24ec4re" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_1/Test_1_PanelEvents.UiPanelTest.tscn" id="5_3785w"]
@@ -19,7 +20,7 @@
 [ext_resource type="Script" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_4/Test_4_GodotUIComponents.cs" id="17_g61g3"]
 [ext_resource type="PackedScene" uid="uid://6cxp06eif72g" path="res://addons/deyu_adaptive_ui_management_system_test/script_bindings/test_4/Test_4_GodotUIComponents.tscn" id="18_ko5wx"]
 
-[node name="TestManager" type="Control" node_paths=PackedStringArray("TestModules")]
+[node name="TestManager" type="Control" node_paths=PackedStringArray("TestModules", "Path", "Logs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +29,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xvf8y")
 TestModules = [NodePath("Test_0_AdpUILoader"), NodePath("Test_1_PanelEvents"), NodePath("Test_2_AllPanels"), NodePath("Test_3_PanelStack"), NodePath("Test_4_GodotUIComponents")]
+Path = NodePath("CanvasLayer/ColorRect/VBoxContainer/CurrentSelection")
+Logs = NodePath("")
+
+[node name="AdpUIManager" parent="." instance=ExtResource("2_yn5ev")]
 
 [node name="Test_0_AdpUILoader" type="Node" parent="."]
 script = ExtResource("2_asr5j")
@@ -48,11 +53,10 @@ TestUIPanel = ExtResource("12_y2xeo")
 TestUIPanelExternAlt = ExtResource("13_gnyfa")
 TestUIPanelParamExternOpenAlt = ExtResource("14_xy4nr")
 
-[node name="Test_3_PanelStack" type="Node" parent="." node_paths=PackedStringArray("PanelRoot", "Path")]
+[node name="Test_3_PanelStack" type="Node" parent="." node_paths=PackedStringArray("PanelRoot")]
 script = ExtResource("15_bm21d")
 Panel = ExtResource("16_1v73x")
 PanelRoot = NodePath("HBoxContainer")
-Path = NodePath("Label")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Test_3_PanelStack"]
 anchors_preset = 15
@@ -62,13 +66,28 @@ offset_top = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Test_3_PanelStack"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "Scene Path"
-
 [node name="Test_4_GodotUIComponents" type="Node" parent="."]
 script = ExtResource("17_g61g3")
 Panel = ExtResource("18_ko5wx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.294118)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentSelection" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2

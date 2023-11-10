@@ -10,30 +10,38 @@ public static partial class AdpUIPanelManager
         "res://addons/deyu_adaptive_ui_management_system/adaptive_ui_management_system.tscn";
     
     private static AdpUIPanelManagerImpl s_ImplInstance;
+    private static _AdpUILoaderImpl s_LoaderImpl;
 
     private static AdpUIPanelManagerImpl Impl
     {
         get
         {
             if (s_ImplInstance != null) return s_ImplInstance;
-            
-            var loader = (_AdpUILoaderImpl)GD.Load<PackedScene>(DefaultAssetPath).Instantiate();
-            if (Engine.GetMainLoop() is not SceneTree sceneTree)
-            {
-                throw new NotSupportedException("Custom main loop is not supported.");
-            }
 
-            var currentScene = sceneTree.CurrentScene;
-            currentScene.AddChild(loader);
-            currentScene.MoveChild(loader, -1);
-            SetupSceneTreeDependencies(loader.AudioInterfaceImpl, loader.InputInterceptorImpl);
-            PushActivePanelTransform(loader, loader.DefaultPanelRoot);
+            if (s_LoaderImpl == null)
+            {
+                s_LoaderImpl =  (_AdpUILoaderImpl)GD.Load<PackedScene>(DefaultAssetPath).Instantiate();
+                
+                if (Engine.GetMainLoop() is not SceneTree sceneTree)
+                {
+                    throw new NotSupportedException("Custom main loop is not supported.");
+                }
+                
+                var currentScene = sceneTree.CurrentScene;
+                currentScene.AddChild(s_LoaderImpl);
+                currentScene.MoveChild(s_LoaderImpl, -1);
+            }
+            
+            SetupSceneTreeDependencies(s_LoaderImpl.AudioInterfaceImpl, s_LoaderImpl.InputInterceptorImpl);
+            PushActivePanelTransform(s_LoaderImpl, s_LoaderImpl.DefaultPanelRoot);
             
             return s_ImplInstance;
         }
     }
 
-    internal static void SetupSceneTreeDependencies(_AdpUIAudioInterfaceImpl audioInterfaceImpl, _AdpUIInputInterceptorImpl inputInterceptorImpl) => 
+    internal static void RegisterLoader(_AdpUILoaderImpl loaderImpl) => s_LoaderImpl = loaderImpl;
+    
+    private static void SetupSceneTreeDependencies(_AdpUIAudioInterfaceImpl audioInterfaceImpl, _AdpUIInputInterceptorImpl inputInterceptorImpl) => 
         s_ImplInstance = new(audioInterfaceImpl, inputInterceptorImpl);
 
 #region Audio Interface

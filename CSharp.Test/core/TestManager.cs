@@ -1,5 +1,4 @@
-﻿using System;
-using Fractural.Tasks;
+﻿using Fractural.Tasks;
 using Godot;
 
 namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
@@ -7,11 +6,19 @@ namespace DEYU.GDUtilities.AdpUIManagementSystem.Test;
 public partial class TestManagerImpl : Control
 {
     [Export] private TestModule[] TestModules { get; set; }
+    [Export] private Label Path { get; set; }
 
-    public override void _Ready() => RunTestImplAsync().Forget(exception => throw exception);
+    private Viewport m_Viewport;
+    private Control m_CurrentFocusOwner;
+
+    public override void _Ready() => 
+        RunTestImplAsync()
+           .Forget(exception => throw exception);
 
     private async GDTask RunTestImplAsync()
     {
+        m_Viewport = GetViewport();
+        
         AdpUIPanelManager.LogHandler = TestHelpers.Log;
         AdpUIPanelManager.LogWarningHandler = TestHelpers.LogWarning;
         AdpUIPanelManager.LogErrorHandler = TestHelpers.LogError;
@@ -25,5 +32,20 @@ public partial class TestManagerImpl : Control
 
         TestHelpers.Log("Test Finish");
         GetTree().Quit();
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        var focusOwner = m_Viewport.GuiGetFocusOwner();
+
+        if (m_CurrentFocusOwner == focusOwner)
+        {
+            return;
+        }
+
+        m_CurrentFocusOwner = focusOwner;
+        
+        Path.Text = $"Selected: {m_CurrentFocusOwner?.GetPath() ?? "Null"}";
     }
 }
