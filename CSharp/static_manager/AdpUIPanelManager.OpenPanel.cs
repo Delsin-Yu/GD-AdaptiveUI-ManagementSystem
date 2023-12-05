@@ -151,7 +151,7 @@ public static partial class AdpUIPanelManager
             }
 
             // 将输入切换为面板所需的输入模式
-            UpdateInputScheme(panelInstance.RequestedInputScheme);
+            UpdateInputScheme(panelInstance.RequestedInputScheme_Protected);
 
             // 将当前面板加入到选出的栈
             focusingPanelStack.Push(panelInstance);

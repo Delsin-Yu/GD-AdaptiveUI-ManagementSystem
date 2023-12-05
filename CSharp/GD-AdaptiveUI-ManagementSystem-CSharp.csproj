@@ -8,12 +8,13 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IsPackable>true</IsPackable>
         <PackageId>DEYU.GDUtilities.AdpUIManagementSystem</PackageId>
-        <Version>0.0.1-alpha</Version>
+        <Version>0.0.2-alpha</Version>
         <Authors>DE-YU</Authors>
         <Product>GD Adaptive UI Management System</Product>
         <Description>This package includes the DotNet implementation part of the GD Adaptive UI Management System, a Godot framework which provides toolsets and managers to simplify the workload of programing games with large-scale, multi-layered UI and gamepad support.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>

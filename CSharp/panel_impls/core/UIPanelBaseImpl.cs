@@ -43,12 +43,12 @@ public abstract partial class UIPanelBaseImpl : Control
                  """
             );
 
-        OnPanelDestroyed();
+        OnPanelDestroyed_Protected();
     }
 
     private void InvokeOnPanelFadeFinish(FadeType fadeType, bool isOpenClose, bool simulated)
     {
-        OnPanelFadeFinish(fadeType, isOpenClose);
+        OnPanelFadeFinish_Protected(fadeType, isOpenClose);
         if (isOpenClose && !simulated) OnPanelOpenCloseFadeFinishCallbackInternal?.Invoke(fadeType);
     }
 
@@ -57,16 +57,16 @@ public abstract partial class UIPanelBaseImpl : Control
         ClosePanelImplShared();
         TweenOff(true, PanelCloseFadeFinishTokenSource);
         PanelCloseFadeFinishTokenSource = new();
-        if (!MutePanelCloseAudio)
+        if (!MutePanelCloseAudio_Protected)
         {
             if (OverrideOnPanelCloseAudio != null) AdpUIPanelManager.PlayAudio(OverrideOnPanelCloseAudio);
             else AdpUIPanelManager.PlayDefaultPanelCloseAudio();
         }
 
-        OnPanelClose();
+        OnPanelClose_Protected();
         AdpUIPanelManager.HandlePanelClose(this, m_CurrentPanelLayer, m_LastLayerVisual);
     }
-
+    
     private void ClosePanelImplShared()
     {
         PanelCloseTokenSource.Cancel();
@@ -87,7 +87,7 @@ public abstract partial class UIPanelBaseImpl : Control
     private void TweenOn(bool isOpenClose)
     {
         IsPanelShown = true;
-        OnPanelFadeStart(FadeType.FadeIn, isOpenClose);
+        OnPanelFadeStart_Protected(FadeType.FadeIn, isOpenClose);
         Tween(
             this,
             true,

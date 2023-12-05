@@ -23,7 +23,7 @@ public partial class UIPanelBaseImpl
     {
         ClosePanelImplShared();
         InvokeOnPanelFadeFinish(FadeType.FadeOut, true, true);
-        OnPanelClose();
+        OnPanelClose_Protected();
     }
 
     internal void Initialize(bool isTempPanel)
@@ -34,7 +34,7 @@ public partial class UIPanelBaseImpl
         m_ActiveOnlyVisualElementsTweenKey.Name = "VisualElementsTweenKey";
         m_OneLengthSelfArray[0] = this;
         AddChild(m_ActiveOnlyVisualElementsTweenKey);
-        OnPanelInitialize();
+        OnPanelInitialize_Protected();
         PanelCloseFadeFinishTokenSource = new();
         PanelCloseTokenSource = new();
     }
@@ -56,13 +56,13 @@ public partial class UIPanelBaseImpl
         m_CurrentPanelLayer = currentPanelLayer;
         m_LastLayerVisual = lastLayerVisual;
 
-        if (!MutePanelOpenAudio)
+        if (!MutePanelOpenAudio_Protected)
         {
             if (OverrideOnPanelOpenAudio != null) AdpUIPanelManager.PlayAudio(OverrideOnPanelOpenAudio);
             else AdpUIPanelManager.PlayDefaultPanelOpenAudio();
         }
 
-        OnPanelOpen();
+        OnPanelOpen_Protected();
     }
 
     internal void SetPanelActiveState(bool active, LayerVisual layerVisual)

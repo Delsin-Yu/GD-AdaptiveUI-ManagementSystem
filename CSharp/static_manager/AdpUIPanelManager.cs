@@ -16,6 +16,26 @@ public static partial class AdpUIPanelManager
     internal static void Log(string message) => Impl.Log(message);
     internal static void LogWarning(string message) => Impl.LogWarning(message);
     internal static void LogError(string message) => Impl.LogError(message);
+
+    internal static void RunProtected(Action call, string actionName, string errorActionName, string name)
+    {
+        try
+        {
+            call();
+        }
+        catch (Exception e)
+        {
+            LogError(
+                $"""
+                 ┌┈┈┈┈ {actionName} Error ┈┈┈┈
+                 │ {e.GetType().Name} on {errorActionName} {name}
+                 │ Message:
+                 │   {e.Message}
+                 └┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+                 """
+                );
+        }
+    }
     
     private partial class AdpUIPanelManagerImpl
     {
